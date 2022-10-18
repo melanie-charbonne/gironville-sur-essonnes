@@ -1,0 +1,15 @@
+@use '../../styles/mixins' as *;
+.hero_image_item {
+    span {
+        width: 100% !important; 
+    }
+    &.background_curve {
+        &:after {
+            @include media-breakpoint-down(md) {
+                display: none;
+            }
+        }
+    }
+}
+
+
