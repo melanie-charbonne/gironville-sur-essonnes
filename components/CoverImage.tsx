@@ -3,7 +3,7 @@ import Image from 'next/image'
 type CoverImageProps = {
     width?: number
     height?: number
-    sizes?: any
+    sizes?: string
     layout?: any
     classNames?: string
     title: string

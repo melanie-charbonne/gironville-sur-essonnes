@@ -1,13 +1,13 @@
 import Head from 'next/head'
-import { GetStaticProps } from 'next'
-import Footer from '../components/Footer'
-import PostCard from '../components/PostCard'
 import TheHero from '../components/TheHero/TheHero'
+import PostCard from '../components/PostCard'
+import SectionTitle from '../components/SectionTitle'
+import Footer from '../components/Footer'
 import { getTheHero, getNewsForHome } from '../lib/api'
 import { client } from '../lib/apollo'
 import { gql } from '@apollo/client'
 
-export default function Home({ posts, page }) {
+export default function Home({ posts, page, sectionTitles }) {
     return (
         <div>
             <Head>
@@ -20,11 +20,36 @@ export default function Home({ posts, page }) {
                     Get started by editing <code>pages/index.js</code>
                 </p>
                 <TheHero page={page} />
-                <div className="grid">
-                  {posts.map((post, i) => {
-                    return <PostCard key={post.uri} post={post}></PostCard>
-                  })}
-                </div>
+                <section className="latest-posts">
+                    <SectionTitle
+                        titleMain={sectionTitles.sectionNews.sectionNewsTitle}
+                        titleWatermark={
+                            sectionTitles.sectionNews.sectionNewsWatermark
+                        }
+                    ></SectionTitle>
+                    <div className="latest-posts-container grid gap-12 grid-cols-3 grid-rows-2 grid-flow-row">
+                        {posts.map((post, index) => {
+                            if (index === 0) {
+                                return (
+                                    <PostCard
+                                        key={post.uri}
+                                        post={post}
+                                        width={400}
+                                        height={560}
+                                    ></PostCard>
+                                )
+                            }
+                            return (
+                                <PostCard
+                                    key={post.uri}
+                                    post={post}
+                                    width={400}
+                                    height={200}
+                                ></PostCard>
+                            )
+                        })}
+                    </div>
+                </section>
             </main>
             <Footer></Footer>
         </div>
@@ -40,10 +65,36 @@ export const getStaticProps = async () => {
         query: getTheHero,
     })
 
+    const { data: sectionTitle } = await client.query({
+        query: gql`
+            query getSectionTitles($id: ID = "/accueil") {
+                page(id: $id, idType: URI) {
+                    homePage {
+                        dictionary {
+                            sectionAgenda {
+                                sectionAgendaTitle
+                                sectionAgendaWatermark
+                            }
+                            sectionEdito {
+                                sectionEditoTitle
+                                sectionEditoWatermark
+                            }
+                            sectionNews {
+                                sectionNewsTitle
+                                sectionNewsWatermark
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+    })
+
     return {
         props: {
             posts: postsData?.posts?.nodes,
             page: theHeroData?.page,
+            sectionTitles: sectionTitle?.page?.homePage?.dictionary,
         },
         revalidate: 10,
     }

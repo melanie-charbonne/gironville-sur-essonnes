@@ -31,9 +31,10 @@
         padding: 0;
         margin: 0;
         @apply font-base;
+        @apply text-grey-dark;
     }
 
-    h1, h2, h3, h4 {
+    h1, h2 {
         @apply font-hn;
     }
     h1 {
@@ -41,9 +42,23 @@
         @apply  md:text-3xl;
         @apply lg:text-5xl;
     }
+    h3 {
+        @apply text-lg;
+    }
 
+    .section-title {
+        &-main {
+            @apply  text-xl;
+            @apply  md:text-2xl;
+            @apply lg:text-4xl;
+            @apply text-blue-dark;
+        }
+    }
     section {
         width: 100%;
+        @apply px-4;
+        @apply md:px-7;
+        @apply lg:px-12;
     }
 }
 
@@ -58,5 +73,17 @@
         left: 0;
         background: url(../asset/images/wave.svg) 0 0 no-repeat;
         background-size: cover;
+    }
+}
+
+// Index Page
+.latest-posts {
+    &-container {
+        grid-template-areas:
+            "last-post . ."
+            "last-post . .";
+        }
+    &-item:first-child {
+        grid-area: last-post;
     }
 }

@@ -1,9 +1,4 @@
-import { GetStaticProps } from 'next'
-import { getTheHero } from '../../lib/api'
-import { gql } from '@apollo/client'
-import { client } from '../../lib/apollo'
 import Image from 'next/image'
-import { Fragment } from 'react'
 import styles from './TheHero.module.scss'
 
 export default function TheHero({ page }) {
@@ -20,10 +15,12 @@ export default function TheHero({ page }) {
     )
 
     return (
-        <Fragment>
-            <section className="hero relative">
+        <>
+            <section className={`${styles.hero} relative`}>
                 <div className="hero_image w-full flex flex-wrap relative">
-                    <div className={`${styles.hero_image_item} ${styles.background_curve} w-full background_curve flex md:bg-gradient-to-r from-blue-dark to-neutral-500`}>
+                    <div
+                        className={`${styles.hero_image_item} ${styles.background_curve} w-full background_curve flex md:bg-gradient-to-r from-blue-dark to-neutral-500`}
+                    >
                         {image}
                     </div>
                 </div>
@@ -53,6 +50,6 @@ export default function TheHero({ page }) {
                     </p>
                 </div>
             </section>
-        </Fragment>
+        </>
     )
 }
