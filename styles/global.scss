@@ -6,8 +6,10 @@
 // FONTS
 @font-face {
     font-family: 'ITCAvantGardeStdBk';
-    src: url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Bk.woff2') format('woff2'),
-        url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Bk.woff') format('woff');
+    src: url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Bk.woff2')
+            format('woff2'),
+        url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Bk.woff')
+            format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -15,15 +17,17 @@
 
 @font-face {
     font-family: 'ITCAvantGardeStdMd';
-    src: url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Md.woff2') format('woff2'),
-        url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Md.woff') format('woff');
+    src: url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Md.woff2')
+            format('woff2'),
+        url('../asset/fonts/ITCAvantGarde/ITCAvantGardeStd-Md.woff')
+            format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @layer base {
-   * {
+    * {
         box-sizing: border-box;
     }
     html,
@@ -34,26 +38,19 @@
         @apply text-grey-dark;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
         @apply font-hn;
     }
     h1 {
-        @apply  text-2xl;
-        @apply  md:text-3xl;
+        @apply text-2xl;
+        @apply md:text-3xl;
         @apply lg:text-5xl;
     }
     h3 {
         @apply text-lg;
     }
 
-    .section-title {
-        &-main {
-            @apply  text-xl;
-            @apply  md:text-2xl;
-            @apply lg:text-4xl;
-            @apply text-blue-dark;
-        }
-    }
     section {
         width: 100%;
         @apply px-4;
@@ -65,7 +62,7 @@
 .background_curve {
     position: relative;
     &:after {
-        content:'';
+        content: '';
         width: 100%;
         height: 25%;
         position: absolute;
@@ -80,10 +77,42 @@
 .latest-posts {
     &-container {
         grid-template-areas:
-            "last-post . ."
-            "last-post . .";
+            'last-post last-post'
+            ' . .';
+        @include media-breakpoint-up(lg) {
+            grid-template-areas:
+                'last-post . .'
+                'last-post . .';
         }
+    }
+    
     &-item:first-child {
         grid-area: last-post;
+        .image-container {
+            width: 100%;
+            height: 200px;
+            @include media-breakpoint-up(md) {
+                height: 300px;
+            }
+            @include media-breakpoint-up(lg) {
+                width: unset;
+                height: unset;
+            }
+            > span {
+                @include media-breakpoint-down(lg) {
+                    position: unset !important;
+                }
+            }
+            img {
+                width: 100% !important;
+                height: unset !important;
+                object-fit: cover;
+                @include media-breakpoint-up(lg) {
+                    width: 0 !important;
+                    height: 0 !important;
+                    object-fit: unset;
+                }
+            }
+        }
     }
 }

@@ -26,14 +26,20 @@ export default function CoverImage ({
 }: CoverImageProps) {
     const altText = featuredImage?.node?.altText
     return (
-        <Image
-            width={width}
-            height={height}
-            sizes={sizes}
-            layout={layout}
-            alt={altText ? altText : `Image de couverture pour ${title}`}
-            src={featuredImage?.node?.sourceUrl}
-            className={classNames}
-        />
+        <>
+            <div className="image-container relative">
+                <Image
+                    alt={
+                        altText ? altText : `Image de couverture pour ${title}`
+                    }
+                    src={featuredImage?.node?.sourceUrl}
+                    width={width}
+                    height={height}
+                    sizes={sizes}
+                    layout={layout}
+                    className={classNames}
+                />
+            </div>
+        </>
     )
 }

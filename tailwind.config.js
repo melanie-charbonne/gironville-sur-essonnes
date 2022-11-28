@@ -23,6 +23,7 @@ module.exports = {
             },
             colors: {
                 blue: {
+                    darker: '#37536C',
                     dark: '#40607D',
                     medium: '#649BCE',
                     70: 'rgba(100, 190, 196, .7)',
@@ -33,7 +34,7 @@ module.exports = {
                     dark: '#4A4A4A',
                     E6: '#E6E6E6',
                     AF: '#AFAFAF',
-                }
+                },
             },
         },
     },

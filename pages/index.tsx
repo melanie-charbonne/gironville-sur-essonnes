@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import TheHero from '../components/TheHero/TheHero'
-import PostCard from '../components/PostCard'
+import PostCard from '../components/PostCard/PostCard'
 import SectionTitle from '../components/SectionTitle'
+import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Footer from '../components/Footer'
 import { getTheHero, getNewsForHome } from '../lib/api'
 import { client } from '../lib/apollo'
@@ -20,14 +21,14 @@ export default function Home({ posts, page, sectionTitles }) {
                     Get started by editing <code>pages/index.js</code>
                 </p>
                 <TheHero page={page} />
-                <section className="latest-posts">
+                <section className="latest-posts mt-9 lg:mt-15">
                     <SectionTitle
                         titleMain={sectionTitles.sectionNews.sectionNewsTitle}
                         titleWatermark={
                             sectionTitles.sectionNews.sectionNewsWatermark
                         }
                     ></SectionTitle>
-                    <div className="latest-posts-container grid gap-12 grid-cols-3 grid-rows-2 grid-flow-row">
+                    <div className="latest-posts-container grid gap-6 lg:gap-12 grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 grid-flow-row mb-9 lg:mb-15">
                         {posts.map((post, index) => {
                             if (index === 0) {
                                 return (
@@ -36,6 +37,7 @@ export default function Home({ posts, page, sectionTitles }) {
                                         post={post}
                                         width={400}
                                         height={560}
+                                        layout={'responsive'}
                                     ></PostCard>
                                 )
                             }
@@ -45,10 +47,12 @@ export default function Home({ posts, page, sectionTitles }) {
                                     post={post}
                                     width={400}
                                     height={200}
+                                    layout={'responsive'}
                                 ></PostCard>
                             )
                         })}
                     </div>
+                    <ButtonMain arrow secondary />
                 </section>
             </main>
             <Footer></Footer>
