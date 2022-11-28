@@ -1,0 +1,65 @@
+.button {
+    padding: 12px 30px;
+    border: 2px solid theme('colors.blue.dark');
+    background-color: theme('colors.blue.dark');
+    line-height: 1;
+    @apply rounded;
+    @apply font-hn;
+    @apply text-white;
+    @apply transition-all;
+    
+    &:hover {
+        background-color: theme('colors.blue.darker');
+        border-color: theme('colors.blue.darker');
+    }
+
+    &.light {
+        background-color: theme('colors.white');
+        border-color: theme('colors.white');
+        color: theme('colors.blue.dark');
+        &:hover {
+            background-color: theme('colors.slate.50');
+            border-color: theme('colors.slate.50');
+        }
+        &.arrow {
+            svg {
+               path {
+                fill: theme('colors.blue.dark');
+               }
+            }
+        }
+    }
+
+    &.secondary {
+        background-color: transparent;
+        color: theme('colors.blue.dark');
+        &:hover {
+            background-color: transparent;
+            border-color: theme('colors.blue.dark');
+        }
+        &.light {
+            &:hover {
+                background-color: transparent;
+                border-color: theme('colors.white');
+            }
+        }
+        &.arrow {
+            svg {
+               path {
+                fill: theme('colors.blue.dark');
+               }
+            }
+        }
+    }
+    &.arrow {
+        svg {
+            @apply transition-transform;
+        }
+        &:hover {
+            svg {
+                @apply translate-x-1;
+            }
+
+        }
+    }
+}
