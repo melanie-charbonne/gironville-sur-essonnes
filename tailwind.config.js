@@ -26,6 +26,7 @@ module.exports = {
                     darker: '#37536C',
                     dark: '#40607D',
                     medium: '#649BCE',
+                    light: '#DBF2F2',
                     70: 'rgba(100, 190, 196, .7)',
                     30: 'rgba(100, 190, 196, .3)',
                 },

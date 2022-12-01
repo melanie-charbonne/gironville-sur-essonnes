@@ -7,12 +7,13 @@ type ButtonMain = {
     arrow?: Boolean
     secondary?: Boolean
     color?: string
+    link: string
 }
 
-export default function ButtonMain({ arrow, secondary, color }: ButtonMain) {
+export default function ButtonMain({ arrow, secondary, color, link }: ButtonMain) {
     return (
         <>
-            <Link href="actualites">
+            <Link href={link}>
                 <div className="flex justify-center">
                     <button
                         className={classNames(

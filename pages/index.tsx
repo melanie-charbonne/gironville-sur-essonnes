@@ -4,11 +4,11 @@ import PostCard from '../components/PostCard/PostCard'
 import SectionTitle from '../components/SectionTitle'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Footer from '../components/Footer'
-import { getTheHero, getNewsForHome } from '../lib/api'
+import { getTheHero, getNewsForHome, getEventsForHome } from '../lib/api'
 import { client } from '../lib/apollo'
 import { gql } from '@apollo/client'
 
-export default function Home({ posts, page, sectionTitles }) {
+export default function Home({ posts, page, events, sectionTitles }) {
     return (
         <div>
             <Head>
@@ -52,7 +52,23 @@ export default function Home({ posts, page, sectionTitles }) {
                             )
                         })}
                     </div>
-                    <ButtonMain arrow secondary />
+                    <ButtonMain link={'actualites'} arrow secondary />
+                </section>
+                <section className="latest-events background_curve mt-12 lg:mt-24 py-9 lg:py-16 bg-blue-light">
+                    <SectionTitle
+                        titleMain={
+                            sectionTitles.sectionAgenda.sectionAgendaTitle
+                        }
+                        titleWatermark={
+                            sectionTitles.sectionAgenda.sectionAgendaWatermark
+                        }
+                        theme={'light'}
+                    ></SectionTitle>
+                    <div className="latest-events_container grid gap-3 lg:gap-6 grid-cols-2 lg:grid-cols-4">
+                        {events.map((event) => {
+                            return <h3>{event.title}</h3>
+                        })}
+                    </div>
                 </section>
             </main>
             <Footer></Footer>
@@ -67,6 +83,10 @@ export const getStaticProps = async () => {
 
     const { data: theHeroData } = await client.query({
         query: getTheHero,
+    })
+
+    const { data: eventsData } = await client.query({
+        query: getEventsForHome,
     })
 
     const { data: sectionTitle } = await client.query({
@@ -98,6 +118,7 @@ export const getStaticProps = async () => {
         props: {
             posts: postsData?.posts?.nodes,
             page: theHeroData?.page,
+            events: eventsData?.events.nodes,
             sectionTitles: sectionTitle?.page?.homePage?.dictionary,
         },
         revalidate: 10,

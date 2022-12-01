@@ -1,18 +1,32 @@
+
+import classNames from 'classnames'
+
 type Titles = {
     titleMain: string
     titleWatermark: string
+    theme?: string 
 }
-export default function sectionTitle(titles: Titles) {
+export default function sectionTitle({titleMain, titleWatermark, theme='default'}: Titles) {
     return (
         <>
             <div className="section-title text-center mb-9 lg:mb-15">
-                {titles.titleWatermark && (
-                    <span className="section-title-watermark font-hn text-2xl md:text-5xl lg:text-7xl text-blue-30">
-                        {titles.titleWatermark}
+                {titleWatermark && (
+                    <span className={classNames(
+                        'section-title-watermark',
+                        'font-hn',
+                        'text-2xl',
+                        'md:text-5xl', 
+                        'lg:text-7xl' ,
+                        {
+                            'text-white': theme == 'light',
+                            'text-blue-30' :  theme == 'default'  
+                        }
+                    )}>
+                        {titleWatermark}
                     </span>
                 )}
                 <h2 className="section-title-main text-xl md:text-2xl lg:text-4xl text-blue-dark z-1 -mt-8">
-                    {titles.titleMain}
+                    {titleMain}
                 </h2>
             </div>
         </>
