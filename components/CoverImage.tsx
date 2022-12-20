@@ -29,10 +29,10 @@ export default function CoverImage ({
         <>
             <div className="image-container relative">
                 <Image
+                    src={featuredImage?.node?.sourceUrl}
                     alt={
                         altText ? altText : `Image de couverture pour ${title}`
                     }
-                    src={featuredImage?.node?.sourceUrl}
                     width={width}
                     height={height}
                     sizes={sizes}

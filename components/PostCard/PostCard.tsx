@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import CoverImage from '../CoverImage'
 import PostDate from '../PostDate'
-import styles from './PostCard.module.scss'
-
 type Post = {
     uri: string
     featuredImage: {
@@ -29,7 +27,7 @@ export default function PostCard({
     return (
         <Link href={`actualites${post.uri}`}>
             <article
-                className={`${styles.card} latest-posts-item card hover:cursor-pointer hover:cursor-pointer`}
+                className='latest-posts-item card hover:cursor-pointer'
             >
                 {post.featuredImage && (
                     <CoverImage

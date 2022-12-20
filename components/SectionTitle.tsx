@@ -4,12 +4,13 @@ import classNames from 'classnames'
 type Titles = {
     titleMain: string
     titleWatermark: string
+    left?: boolean
     theme?: string 
 }
-export default function sectionTitle({titleMain, titleWatermark, theme='default'}: Titles) {
+export default function sectionTitle({titleMain, titleWatermark, left, theme='default'}: Titles) {
     return (
         <>
-            <div className="section-title text-center mb-9 lg:mb-15">
+            <div className={`section-title ${left ? 'text-left' : 'text-center'} mb-9 lg:mb-15`}>
                 {titleWatermark && (
                     <span className={classNames(
                         'section-title-watermark',

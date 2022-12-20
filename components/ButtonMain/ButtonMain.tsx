@@ -8,9 +8,10 @@ type ButtonMain = {
     secondary?: Boolean
     color?: string
     link: string
+    text: string
 }
 
-export default function ButtonMain({ arrow, secondary, color, link }: ButtonMain) {
+export default function ButtonMain({ arrow, secondary, color, link, text }: ButtonMain) {
     return (
         <>
             <Link href={link}>
@@ -25,6 +26,7 @@ export default function ButtonMain({ arrow, secondary, color, link }: ButtonMain
                             'items-center',
                             'px-6',
                             'py-3',
+                            'cursor-pointer',
                             {
                                 [styles.secondary]: secondary,
                                 [styles.light]: color === 'light',
@@ -33,7 +35,7 @@ export default function ButtonMain({ arrow, secondary, color, link }: ButtonMain
                         )}
                     >
                         <>
-                            Toute l'actualité
+                            {text}
                             {arrow && <ArrowLeft className="ml-2" />}
                         </>
                     </button>

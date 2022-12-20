@@ -70,6 +70,8 @@
         left: 0;
         background: url(../asset/images/wave.svg) 0 0 no-repeat;
         background-size: cover;
+        z-index: -1;
+
     }
 }
 
@@ -113,6 +115,29 @@
                     object-fit: unset;
                 }
             }
+        }
+    }
+}
+
+// Cards
+.card {
+    h3 {
+        display: inline;
+        width: calc(100%);
+        background-image: linear-gradient(
+            transparent calc(100% - 1px),
+            theme('colors.grey.dark') 1px
+        );
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        transition: background-size .5s;
+    }
+    &:hover {
+        h3 {
+            background-size: 100% 100%;
+        }
+        img {
+            @apply contrast-75;
         }
     }
 }

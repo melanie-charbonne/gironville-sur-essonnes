@@ -2,13 +2,19 @@ import Head from 'next/head'
 import TheHero from '../components/TheHero/TheHero'
 import PostCard from '../components/PostCard/PostCard'
 import SectionTitle from '../components/SectionTitle'
+import EventCard from '../components/EventCard/EventCard'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
+import Image from 'next/image'
 import Footer from '../components/Footer'
-import { getTheHero, getNewsForHome, getEventsForHome } from '../lib/api'
+import {
+    getTheHero,
+    getNewsForHome,
+    getEventsForHome,
+    getEditoForHome,
+} from '../lib/api'
 import { client } from '../lib/apollo'
 import { gql } from '@apollo/client'
-
-export default function Home({ posts, page, events, sectionTitles }) {
+export default function Home({ posts, page, events, sectionTitles, edito, editoImage }) {
     return (
         <div>
             <Head>
@@ -52,7 +58,12 @@ export default function Home({ posts, page, events, sectionTitles }) {
                             )
                         })}
                     </div>
-                    <ButtonMain link={'actualites'} arrow secondary />
+                    <ButtonMain
+                        link={'actualites'}
+                        text={"Toute l'actualité"}
+                        arrow
+                        secondary
+                    />
                 </section>
                 <section className="latest-events background_curve mt-12 lg:mt-24 py-9 lg:py-16 bg-blue-light">
                     <SectionTitle
@@ -64,9 +75,58 @@ export default function Home({ posts, page, events, sectionTitles }) {
                         }
                         theme={'light'}
                     ></SectionTitle>
-                    <div className="latest-events_container grid gap-3 lg:gap-6 grid-cols-2 lg:grid-cols-4">
+                    <div className="latest-events_container grid gap-3 lg:gap-6 grid-cols-2 lg:grid-cols-4 mb-9 lg:mb-15">
                         {events.map((event) => {
-                            return <h3>{event.title}</h3>
+                            return (
+                                <EventCard
+                                    key={event.uri}
+                                    event={event}
+                                    width={310}
+                                    height={375}
+                                    layout={'responsive'}
+                                ></EventCard>
+                            )
+                        })}
+                    </div>
+                    <ButtonMain
+                        link={'agenda'}
+                        text={'Tous les évènements'}
+                        color={'light'}
+                        arrow
+                    />
+                </section>
+                <section className="edito grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 md:gap-9 mt-12 lg:mt-24">
+                    <div className="hidden sm:inline-block">
+                        <Image
+                            src={editoImage.sourceUrl}
+                            width={475}
+                            height={620}
+                            layout={'responsive'}
+                        ></Image>
+                    </div>
+
+                    <div className="md:col-span-2">
+                        <SectionTitle left
+                            titleMain={
+                                sectionTitles.sectionEdito.sectionEditoTitle
+                            }
+                            titleWatermark={
+                                sectionTitles.sectionEdito.sectionEditoWatermark
+                            }
+                        ></SectionTitle>
+
+                        {edito.map((edito) => {
+                            return (
+                                <>
+                                    <h3>{edito.title}</h3>
+                                    <p
+                                      // To do: The excerpt
+                                        dangerouslySetInnerHTML={{
+                                            __html: edito.content,
+                                        }}
+                                    ></p>
+                                </>
+                            )
                         })}
                     </div>
                 </section>
@@ -114,12 +174,17 @@ export const getStaticProps = async () => {
         `,
     })
 
+     const { data: editoData } = await client.query({
+        query: getEditoForHome,
+     })
     return {
         props: {
             posts: postsData?.posts?.nodes,
             page: theHeroData?.page,
             events: eventsData?.events.nodes,
             sectionTitles: sectionTitle?.page?.homePage?.dictionary,
+            editoImage: editoData?.page?.homePage?.dictionary?.editoImage,
+            edito: editoData?.editos?.nodes,
         },
         revalidate: 10,
     }
