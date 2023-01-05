@@ -1,3 +1,4 @@
+
 .button {
     padding: 12px 30px;
     border: 2px solid theme('colors.blue.dark');
@@ -60,6 +61,41 @@
                 @apply translate-x-1;
             }
 
+        }
+    }
+    &.loading {
+        position: relative;
+        border: none !important;
+        pointer-events: none;
+        background-color: theme('colors.slate.50');
+        overflow: hidden;
+        color: theme('colors.grey.79');
+        &:after {
+            content: '';
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(
+                90deg,
+                theme('colors.slate.50'),
+                rgba(255,255,255,.25),
+                theme('colors.slate.50'),
+            );
+            z-index: 0;
+            animation: btn-loading-animation 1.5s infinite
+                cubic-bezier(0.13, 0.13, 0.07, 1.17);
+            pointer-events: none;
+        }
+    }
+
+    @keyframes btn-loading-animation {
+        0% {
+            transform: translateX(-200%);
+        }
+        100% {
+            transform: translateX(200%);
         }
     }
 }

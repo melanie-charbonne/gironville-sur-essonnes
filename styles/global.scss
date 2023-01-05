@@ -49,13 +49,22 @@
     }
     h3 {
         @apply text-lg;
+        .list & {
+            @apply font-medium;
+        }
     }
+    
 
     section {
         width: 100%;
         @apply px-4;
         @apply md:px-7;
         @apply lg:px-12;
+    }
+    .main {
+        @apply py-4;
+        @apply lg:py-16;
+        @apply w-screen;
     }
 }
 
@@ -77,42 +86,44 @@
 
 // Index Page
 .latest-posts {
-    &-container {
-        grid-template-areas:
-            'last-post last-post'
-            ' . .';
-        @include media-breakpoint-up(lg) {
+    .latest-posts {
+        &-container {
             grid-template-areas:
-                'last-post . .'
-                'last-post . .';
-        }
-    }
-    
-    &-item:first-child {
-        grid-area: last-post;
-        .image-container {
-            width: 100%;
-            height: 200px;
-            @include media-breakpoint-up(md) {
-                height: 300px;
-            }
+                'last-post last-post'
+                ' . .';
             @include media-breakpoint-up(lg) {
-                width: unset;
-                height: unset;
+                grid-template-areas:
+                    'last-post . .'
+                    'last-post . .';
             }
-            > span {
-                @include media-breakpoint-down(lg) {
-                    position: unset !important;
+        }
+        
+        &-item:first-child {
+            grid-area: last-post;
+            .image-container {
+                width: 100%;
+                height: 200px;
+                @include media-breakpoint-up(md) {
+                    height: 300px;
                 }
-            }
-            img {
-                width: 100% !important;
-                height: unset !important;
-                object-fit: cover;
                 @include media-breakpoint-up(lg) {
-                    width: 0 !important;
-                    height: 0 !important;
-                    object-fit: unset;
+                    width: unset;
+                    height: unset;
+                }
+                > span {
+                    @include media-breakpoint-down(lg) {
+                        position: unset !important;
+                    }
+                }
+                img {
+                    width: 100% !important;
+                    height: unset !important;
+                    object-fit: cover;
+                    @include media-breakpoint-up(lg) {
+                        width: 0 !important;
+                        height: 0 !important;
+                        object-fit: unset;
+                    }
                 }
             }
         }
@@ -120,6 +131,7 @@
 }
 
 // Cards
+// ** Underline Title on hover **
 .card {
     h3 {
         display: inline;

@@ -1,11 +1,12 @@
 import Image from 'next/image'
-
+import cx from 'classnames'
 type CoverImageProps = {
     width?: number
     height?: number
     sizes?: string
     layout?: any
     classNames?: string
+    containerClassNames?: string
     title: string
     featuredImage: {
         node: {
@@ -22,12 +23,13 @@ export default function CoverImage ({
     layout,
     title,
     featuredImage,
+    containerClassNames,
     classNames,
 }: CoverImageProps) {
     const altText = featuredImage?.node?.altText
     return (
         <>
-            <div className="image-container relative">
+            <div className={cx('image-container relative', containerClassNames)}>
                 <Image
                     src={featuredImage?.node?.sourceUrl}
                     alt={

@@ -1,31 +1,32 @@
 import Head from 'next/head'
 import TheHero from '../components/TheHero/TheHero'
-import PostCard from '../components/PostCard/PostCard'
+import PostCard from '../components/Posts/PostCard'
 import SectionTitle from '../components/SectionTitle'
 import EventCard from '../components/EventCard/EventCard'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Image from 'next/image'
 import Footer from '../components/Footer'
-import {
-    getTheHero,
-    getNewsForHome,
-    getEventsForHome,
-    getEditoForHome,
-} from '../lib/api'
+import { getTheHero, getEditoForHome } from '../lib/api/index'
+import { getNewsForHome} from '../lib/api/news'
+import { getEventsForHome } from '../lib/api/events'
 import { client } from '../lib/apollo'
 import { gql } from '@apollo/client'
-export default function Home({ posts, page, events, sectionTitles, edito, editoImage }) {
+export default function Home({
+    posts,
+    page,
+    events,
+    sectionTitles,
+    edito,
+    editoImage,
+}) {
     return (
         <div>
             <Head>
-                <title>Mairie de Gironville-sur-Essones</title>
+                <title>Mairie de Gironville-sur-Essonnes</title>
                 <link rel="icon" href="favicon.ico"></link>
             </Head>
-            <main className="w-screen py-4 lg:py-16">
-                <h1 className="title">Headless WordPress Next.js Starter</h1>
-                <p className="description">
-                    Get started by editing <code>pages/index.js</code>
-                </p>
+            {/* To do: TheHeader */}
+            <div className="main">
                 <TheHero page={page} />
                 <section className="latest-posts mt-9 lg:mt-15">
                     <SectionTitle
@@ -75,7 +76,7 @@ export default function Home({ posts, page, events, sectionTitles, edito, editoI
                         }
                         theme={'light'}
                     ></SectionTitle>
-                    <div className="latest-events_container grid gap-3 lg:gap-6 grid-cols-2 lg:grid-cols-4 mb-9 lg:mb-15">
+                    <div className="latest-events_container grid gap-6 grid-cols-2 lg:grid-cols-4 mb-9 lg:mb-15">
                         {events.map((event) => {
                             return (
                                 <EventCard
@@ -105,8 +106,9 @@ export default function Home({ posts, page, events, sectionTitles, edito, editoI
                         ></Image>
                     </div>
 
-                    <div className="md:col-span-2">
-                        <SectionTitle left
+                    <div className="md:col-span-2 self-center">
+                        <SectionTitle
+                            left
                             titleMain={
                                 sectionTitles.sectionEdito.sectionEditoTitle
                             }
@@ -118,19 +120,22 @@ export default function Home({ posts, page, events, sectionTitles, edito, editoI
                         {edito.map((edito) => {
                             return (
                                 <>
-                                    <h3>{edito.title}</h3>
-                                    <p
-                                      // To do: The excerpt
-                                        dangerouslySetInnerHTML={{
-                                            __html: edito.content,
-                                        }}
-                                    ></p>
+                                    <article key={edito.uri}>
+                                        <h3 className="mb-3 font-hn">
+                                            {edito.title}
+                                        </h3>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                                __html: edito.excerpt,
+                                            }}
+                                        />
+                                    </article>
                                 </>
                             )
                         })}
                     </div>
                 </section>
-            </main>
+            </div>
             <Footer></Footer>
         </div>
     )
@@ -174,9 +179,9 @@ export const getStaticProps = async () => {
         `,
     })
 
-     const { data: editoData } = await client.query({
+    const { data: editoData } = await client.query({
         query: getEditoForHome,
-     })
+    })
     return {
         props: {
             posts: postsData?.posts?.nodes,

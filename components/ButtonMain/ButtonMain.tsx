@@ -6,17 +6,48 @@ import ArrowLeft from '../../asset/images/icons/arrow-left.svg'
 type ButtonMain = {
     arrow?: Boolean
     secondary?: Boolean
+    loading?: Boolean
     color?: string
-    link: string
+    link?: string
     text: string
+    onClick?: any
 }
 
-export default function ButtonMain({ arrow, secondary, color, link, text }: ButtonMain) {
+export default function ButtonMain({ arrow, secondary, loading, color, link, text, onClick }: ButtonMain) {
     return (
         <>
-            <Link href={link}>
-                <div className="flex justify-center">
+            {link ? (
+                <Link href={link}>
+                    <div className="flex justify-center">
+                        <button
+                            className={classNames(
+                                `${styles.button}`,
+                                'button',
+                                'text-center',
+                                'flex',
+                                'justify-center',
+                                'items-center',
+                                'px-6',
+                                'py-3',
+                                'cursor-pointer',
+                                {
+                                    [styles.secondary]: secondary,
+                                    [styles.light]: color === 'light',
+                                    [styles.arrow]: arrow,
+                                }
+                            )}
+                        >
+                            <>
+                                {text}
+                                {arrow && <ArrowLeft className="ml-2" />}
+                            </>
+                        </button>
+                    </div>
+                </Link>
+            ) : (
+                <div className="flex justify-center no-link">
                     <button
+                        onClick={onClick}
                         className={classNames(
                             `${styles.button}`,
                             'button',
@@ -31,6 +62,7 @@ export default function ButtonMain({ arrow, secondary, color, link, text }: Butt
                                 [styles.secondary]: secondary,
                                 [styles.light]: color === 'light',
                                 [styles.arrow]: arrow,
+                                [styles.loading]: loading,
                             }
                         )}
                     >
@@ -40,7 +72,7 @@ export default function ButtonMain({ arrow, secondary, color, link, text }: Butt
                         </>
                     </button>
                 </div>
-            </Link>
+            )}
         </>
     )
 }
