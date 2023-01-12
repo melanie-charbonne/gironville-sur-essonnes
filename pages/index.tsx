@@ -2,13 +2,13 @@ import Head from 'next/head'
 import TheHero from '../components/TheHero/TheHero'
 import PostCard from '../components/Posts/PostCard'
 import SectionTitle from '../components/SectionTitle'
-import EventCard from '../components/EventCard/EventCard'
+import EventCard from '../components/Events/EventCard'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Image from 'next/image'
 import Footer from '../components/Footer'
 import { getTheHero, getEditoForHome } from '../lib/api/index'
-import { getNewsForHome} from '../lib/api/news'
-import { getEventsForHome } from '../lib/api/events'
+import { GET_NEWS_FOR_HOME } from '../lib/api/news'
+import { GET_EVENTS_FOR_HOME } from '../lib/api/events'
 import { client } from '../lib/apollo'
 import { gql } from '@apollo/client'
 export default function Home({
@@ -47,16 +47,17 @@ export default function Home({
                                         layout={'responsive'}
                                     ></PostCard>
                                 )
-                            }
-                            return (
-                                <PostCard
+                            } else {
+                                return (
+                                    <PostCard
                                     key={post.uri}
                                     post={post}
                                     width={400}
                                     height={200}
                                     layout={'responsive'}
-                                ></PostCard>
-                            )
+                                    ></PostCard>
+                                )
+                            }
                         })}
                     </div>
                     <ButtonMain
@@ -143,7 +144,7 @@ export default function Home({
 
 export const getStaticProps = async () => {
     const { data: postsData } = await client.query({
-        query: getNewsForHome,
+        query: GET_NEWS_FOR_HOME,
     })
 
     const { data: theHeroData } = await client.query({
@@ -151,7 +152,7 @@ export const getStaticProps = async () => {
     })
 
     const { data: eventsData } = await client.query({
-        query: getEventsForHome,
+        query: GET_EVENTS_FOR_HOME,
     })
 
     const { data: sectionTitle } = await client.query({

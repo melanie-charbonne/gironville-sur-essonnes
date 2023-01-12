@@ -12,11 +12,9 @@ const PostsList = ({ posts }) => {
                 <PostCard
                     key={post.uri}
                     post={post}
-                    width={600}
-                    height={300}
                     layout={'fill'}
                     objectFit={'object-cover'}
-                    containerClassNames={'w-full h-52 md:h-[250px]'}
+                    containerClassNames={'w-full h-56 md:h-[300px]'}
                     displayExcerpt
                 ></PostCard>
             )

@@ -1,21 +1,21 @@
 import { gql } from '@apollo/client'
-import ImageFragment from './fragments/imageFragment'
-import PostFragment from './fragments/postFragment'
+import {IMAGE_FRAGMENT} from './fragments/imageFragment'
+import {POST_FRAGMENT} from './fragments/postFragment'
 
-export const getNewsForHome = gql`
-    query getNewsForHome {
+export const GET_NEWS_FOR_HOME = gql`
+    query GET_NEWS_FOR_HOME {
         posts(last: 5, where: { orderby: { field: DATE, order: DESC } }) {
             nodes {
                 ...PostFragment
             }
         }
     }
-    ${PostFragment}
-    ${ImageFragment}
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
 `
-export const getAllNews = gql`
-    query getAllNews($uri: String, $first: Int, $after: String) {
-        page: pageBy(uri: $uri) {
+export const GET_ALL_NEWS = gql`
+    query GET_ALL_NEWS($id: ID!, $first: Int, $after: String) {
+        page: page(id: $id, idType: URI) {
             content
             uri
         }
@@ -39,11 +39,11 @@ export const getAllNews = gql`
             }
         }
     }
-    ${PostFragment}
-    ${ImageFragment}
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
 `
-export const LoadMoreNews = gql`
-    query LoadMoreNews($first: Int, $after: String) {
+export const LOAD_MORE_NEWS = gql`
+    query LOAD_MORE_NEWS($first: Int, $after: String) {
         posts(first: $first, after: $after) {
             edges {
                 cursor
@@ -58,6 +58,6 @@ export const LoadMoreNews = gql`
             }
         }
     }
-    ${PostFragment}
-    ${ImageFragment}
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
 `

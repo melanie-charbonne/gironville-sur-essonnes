@@ -36,7 +36,7 @@ export default function PostCard({
     displayContent,
 }: PostCardProps) {
     return (
-        <Link href={`actualites${post.uri}`}>
+        <Link href={post.uri}>
             <article className="latest-posts-item card hover:cursor-pointer rounded-md overflow-hidden">
                 {post.featuredImage && (
                     <CoverImage

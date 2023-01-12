@@ -29,6 +29,7 @@ export default function PostURI({ post }) {
 }
 
 export async function getStaticProps({ params }) {
+    // TO DO: Make the query for Events
   const GET_POST_BY_URI = gql`
     query GetPostByURI($id: ID!) {
       post(id: $id, idType: URI) {

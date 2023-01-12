@@ -4,13 +4,13 @@ import styles from './ButtonMain.module.scss'
 import ArrowLeft from '../../asset/images/icons/arrow-left.svg'
 
 type ButtonMain = {
-    arrow?: Boolean
-    secondary?: Boolean
-    loading?: Boolean
+    arrow?: boolean
+    secondary?: boolean
+    loading?: boolean
     color?: string
     link?: string
     text: string
-    onClick?: any
+    onClick?: () => void
 }
 
 export default function ButtonMain({ arrow, secondary, loading, color, link, text, onClick }: ButtonMain) {

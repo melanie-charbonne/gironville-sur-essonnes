@@ -9,7 +9,9 @@ export const client = new ApolloClient({
         // headers: {
         //     'Content-Type': 'application/json' ,
         // },
+        
     }),
+    
     cache: new InMemoryCache(),
 })
 

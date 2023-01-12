@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import CoverImage from '../CoverImage'
-import PostDate from '../PostDate'
+import cx from 'classnames'
+
 type Event = {
     uri: string
     featuredImage: {
@@ -14,14 +15,26 @@ type Event = {
         eventStartDate?: String
         eventEndDate?: String
     }
+    excerpt: string
 }
 type EventCardProps = {
     event: Event
     width?: number
     height?: number
     layout?: string
+    objectFit?: string
+    containerClassNames?: string
+    displayExcerpt?: boolean
 }
-export default function EventCard({ event, width, height, layout }: EventCardProps) {
+export default function EventCard({
+    event,
+    width,
+    height,
+    layout,
+    objectFit,
+    containerClassNames,
+    displayExcerpt,
+}: EventCardProps) {
     return (
         <Link href={`${event.uri}`}>
             <article className="latest-event-item card hover:cursor-pointer">
@@ -32,7 +45,11 @@ export default function EventCard({ event, width, height, layout }: EventCardPro
                         width={width}
                         height={height}
                         layout={layout}
-                        classNames={'rounded-md transition duration-250'}
+                        classNames={cx(
+                            'rounded-md transition duration-250',
+                            objectFit
+                        )}
+                        containerClassNames={containerClassNames}
                     />
                 )}
 
@@ -40,7 +57,7 @@ export default function EventCard({ event, width, height, layout }: EventCardPro
                 {event.event_details.eventStartDate &&
                 event.event_details.eventEndDate ? (
                     <p className="flex text-sm text-grey-79 my-2">
-                        Du {event.event_details.eventStartDate} au {' '}
+                        Du {event.event_details.eventStartDate} au{' '}
                         {event.event_details.eventEndDate}
                     </p>
                 ) : event.event_details.eventStartDate ? (
@@ -50,6 +67,14 @@ export default function EventCard({ event, width, height, layout }: EventCardPro
                 ) : null}
 
                 <h3>{event.title}</h3>
+                {displayExcerpt && (
+                    <div
+                        className="mt-2"
+                        dangerouslySetInnerHTML={{
+                            __html: event.excerpt,
+                        }}
+                    />
+                )}
             </article>
         </Link>
     )

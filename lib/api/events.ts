@@ -1,25 +1,78 @@
 import { gql } from '@apollo/client'
-import ImageFragment from './fragments/imageFragment'
+import {EVENT_FRAGMENT} from './fragments/eventFragment'
+import {IMAGE_FRAGMENT} from './fragments/imageFragment'
+import { AUTHOR_FRAGMENT } from './fragments/authorFragment'
 
-
-export const getEventsForHome = gql`
-    query getEventsForHome {
+export const GET_EVENTS_FOR_HOME = gql`
+    ${EVENT_FRAGMENT}
+    ${IMAGE_FRAGMENT}
+    query GET_EVENTS_FOR_HOME {
         events(last: 5, where: { orderby: { field: DATE, order: DESC } }) {
             nodes {
-                featuredImage {
-                    node {
-                        ...ImageFragment
-                    }
+                ...eventFragment
+            }
+        }
+    }
+    `
+    export const GET_ALL_EVENTS = gql`
+    ${EVENT_FRAGMENT}
+    ${IMAGE_FRAGMENT}
+    query GET_ALL_EVENTS($id: ID!, $first: Int, $after: String) {
+        page: page(id: $id, idType: URI) {
+            content
+            uri
+        }
+        events: events(
+            first: $first
+            after: $after
+            where: { orderby: { field: DATE, order: DESC } }
+        ) {
+            pageInfo {
+                hasNextPage
+                endCursor
+                offsetPagination {
+                    total
                 }
-                uri
-                title
-                event_details {
-                    eventEndDate
-                    eventLocation
-                    eventStartDate
+            }
+            edges {
+                cursor
+                node {
+                    ...eventFragment
+                    excerpt
                 }
             }
         }
     }
-    ${ImageFragment}
+`
+export const LOAD_MORE_EVENTS = gql`
+    ${EVENT_FRAGMENT}
+    ${IMAGE_FRAGMENT}
+    query LOAD_MORE_EVENTS($first: Int, $after: String) {
+        events(first: $first, after: $after) {
+            edges {
+                cursor
+                node {
+                    ...eventFragment
+                    excerpt
+                }
+            }
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+        }
+    }
+`
+
+export const GET_EVENT_BY_URI = gql`
+    ${AUTHOR_FRAGMENT}
+    ${EVENT_FRAGMENT}
+    ${IMAGE_FRAGMENT}
+    query GET_EVENT_BY_URI($id: ID!) {
+        event(id: $id, idType: URI) {
+            ...eventFragment
+            ...authorFragment
+            content
+        }
+    }
 `

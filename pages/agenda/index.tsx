@@ -1,12 +1,14 @@
 import Head from 'next/head'
-import LoadMorePosts from '../../components/Posts/LoadMorePosts'
+import LoadMoreEvents from '../../components/Events/LoadMoreEvents'
 import SectionTitle from '../../components/SectionTitle'
+import EventsList from '../../components/Events/EventsList'
+import EventCard from '../../components/Events/EventCard'
 import { client } from '../../lib/apollo'
 import { gql } from '@apollo/client'
-import { GET_ALL_NEWS } from '../../lib/api/news'
+import { GET_ALL_EVENTS } from '../../lib/api/events'
 import { PER_PAGE_FIRST } from '../../lib/constants'
 
-export default function News({ posts, pageTitle, page }) {
+export default function Events({ events, pageTitle, page, error }) {
     return (
         <div>
             <Head>
@@ -14,22 +16,25 @@ export default function News({ posts, pageTitle, page }) {
             </Head>
             <div className="main list">
                 <SectionTitle
-                    titleMain={pageTitle.sectionNews.sectionNewsTitle}
-                    titleWatermark={pageTitle.sectionNews.sectionNewsWatermark}
+                    titleMain={pageTitle.sectionAgenda.sectionAgendaTitle}
+                    titleWatermark={
+                        pageTitle.sectionAgenda.sectionAgendaWatermark
+                    }
                 ></SectionTitle>
 
                 <section
                     className="mt-2 mb-9 lg:mb-15"
                     dangerouslySetInnerHTML={{
-                        __html: page.content,
+                        __html: page?.content,
                     }}
                 />
-
-                <LoadMorePosts posts={posts} />
+                <LoadMoreEvents events={events} />
+              
             </div>
         </div>
     )
 }
+
 export const getStaticProps = async () => {
     const { data: pageTitle } = await client.query({
         query: gql`
@@ -37,9 +42,9 @@ export const getStaticProps = async () => {
                 page(id: $id, idType: URI) {
                     homePage {
                         dictionary {
-                            sectionNews {
-                                sectionNewsTitle
-                                sectionNewsWatermark
+                            sectionAgenda {
+                                sectionAgendaTitle
+                                sectionAgendaWatermark
                             }
                         }
                     }
@@ -48,10 +53,10 @@ export const getStaticProps = async () => {
         `,
     })
 
-    const { data: postsData } = await client.query({
-        query: GET_ALL_NEWS,
+    const { data: eventsData } = await client.query({
+         query: GET_ALL_EVENTS,
         variables: {
-            id: '/actualites/',
+            id: '/agenda',
             first: PER_PAGE_FIRST,
             after: null,
         },
@@ -60,8 +65,8 @@ export const getStaticProps = async () => {
     return {
         props: {
             pageTitle: pageTitle?.page?.homePage?.dictionary,
-            posts: postsData?.posts,
-            page: postsData?.page,
+            events: eventsData?.events,
+            page: eventsData?.page,
         },
         revalidate: 10,
     }
