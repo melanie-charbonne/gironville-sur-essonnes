@@ -53,7 +53,6 @@
             @apply font-hn;
         }
     }
-    
 
     section {
         width: 100%;
@@ -80,7 +79,6 @@
         background: url(../asset/images/wave.svg) 0 0 no-repeat;
         background-size: cover;
         z-index: -1;
-
     }
 }
 
@@ -97,7 +95,7 @@
                     'last-post . .';
             }
         }
-        
+
         &-item:first-child {
             grid-area: last-post;
             .image-container {
@@ -142,7 +140,7 @@
         );
         background-repeat: no-repeat;
         background-size: 0% 100%;
-        transition: background-size .5s;
+        transition: background-size 0.5s;
     }
     &:hover {
         h3 {
@@ -151,5 +149,56 @@
         img {
             @apply contrast-75;
         }
+    }
+}
+
+// Wordpress Gutenberg
+/* Layout */
+.is-layout-flex {
+    @apply flex;
+}
+/* Button */
+.wp-block-button {
+    .wp-block-button__link {
+        padding: 12px 30px;
+        border: 2px solid theme('colors.blue.dark');
+        background-color: theme('colors.blue.dark');
+        line-height: 1;
+        @apply rounded;
+        @apply font-hn;
+        @apply text-white;
+        @apply transition-all;
+        
+        &:hover {
+            background-color: theme('colors.blue.darker');
+            border-color: theme('colors.blue.darker');
+        }
+    }
+    &.is-style-outline {
+        .wp-block-button__link {
+            background-color: transparent;
+            color: theme('colors.blue.dark');
+            &:hover {
+                background-color: transparent;
+                border-color: theme('colors.blue.dark');
+            }   
+        }
+    }
+}
+
+/* Posts */
+article {
+    p {
+        @apply mb-2;
+        @apply md:mb-3;
+    }
+    .wp-block-image {
+        display: block !important;
+        img {
+            display: inline;
+        }
+    } 
+    .wp-block-gallery {
+        gap: 30px;
     }
 }

@@ -2,9 +2,6 @@ import Head from 'next/head'
 import Footer from '../../components/Footer'
 import { client } from '../../lib/apollo'
 import { GET_EVENT_BY_URI } from '../../lib/api/events'
-import { gql } from '@apollo/client'
-import { EVENT_FRAGMENT } from '../../lib/api/fragments/eventFragment'
-import { AUTHOR_FRAGMENT } from '../../lib/api/fragments/authorFragment'
 
 export default function EventURI({ event }) {
     return (
@@ -34,17 +31,17 @@ export default function EventURI({ event }) {
 
 export const getStaticProps = async ({ params }) => {
     const { data: eventData } = await client.query({
-        //query: GET_EVENT_BY_URI,
-        query: gql`
-            ${EVENT_FRAGMENT}
-            ${AUTHOR_FRAGMENT}
-            query GET_EVENT_BY_URI($id: ID!) {
-                event(id: $id, idType: URI) {
-                    ...eventFragment
+        query: GET_EVENT_BY_URI,
+        // query: gql`
+        //     ${EVENT_FRAGMENT}
+        //     ${AUTHOR_FRAGMENT}
+        //     query GET_EVENT_BY_URI($id: ID!) {
+        //         event(id: $id, idType: URI) {
+        //             ...eventFragment
                     
-                }
-            }
-        `,
+        //         }
+        //     }
+        // `,
         variables: {
             id: params.uri,
         },

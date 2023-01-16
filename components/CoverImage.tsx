@@ -16,7 +16,7 @@ type CoverImageProps = {
     }
 }
 
-export default function CoverImage ({
+export default function CoverImage({
     width,
     height,
     sizes,
@@ -29,7 +29,9 @@ export default function CoverImage ({
     const altText = featuredImage?.node?.altText
     return (
         <>
-            <div className={cx('image-container relative', containerClassNames)}>
+            <div
+                className={cx('image-container relative', containerClassNames)}
+            >
                 <Image
                     src={featuredImage?.node?.sourceUrl}
                     alt={

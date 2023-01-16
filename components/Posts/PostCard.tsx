@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import CoverImage from '../CoverImage'
-import PostDate from '../PostDate'
+import PostDate from './PostDate'
 import cx from 'classnames'
 type Post = {
     uri: string

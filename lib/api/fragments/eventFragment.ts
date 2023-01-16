@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 export const EVENT_FRAGMENT = gql`
-    fragment eventFragment on Event {
+    fragment EventFragment on Event {
         uri
         title
         event_details {

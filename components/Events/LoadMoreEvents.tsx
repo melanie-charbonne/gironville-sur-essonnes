@@ -72,7 +72,6 @@ const LoadMoreEvents = ({
         },
         onError: (error) => {
             setError(error?.graphQLErrors ?? '')
-            console.log(error)
         },
     })
 
@@ -131,7 +130,6 @@ const LoadMoreEvents = ({
 
             {error && (
                 <>
-                    
                     <div className="w-full flex justify-center my-10">
                         Retrouvez biêntot tous nos évènements
                     </div>
@@ -141,4 +139,4 @@ const LoadMoreEvents = ({
     )
 }
 
-export default LoadMoreEvents;
+export default LoadMoreEvents

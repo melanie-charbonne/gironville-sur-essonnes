@@ -1,8 +1,11 @@
 import { gql } from '@apollo/client'
-import {IMAGE_FRAGMENT} from './fragments/imageFragment'
-import {POST_FRAGMENT} from './fragments/postFragment'
+import { IMAGE_FRAGMENT } from './fragments/imageFragment'
+import { POST_FRAGMENT } from './fragments/postFragment'
+import { AUTHOR_FRAGMENT } from './fragments/authorFragment'
 
 export const GET_NEWS_FOR_HOME = gql`
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
     query GET_NEWS_FOR_HOME {
         posts(last: 5, where: { orderby: { field: DATE, order: DESC } }) {
             nodes {
@@ -10,10 +13,10 @@ export const GET_NEWS_FOR_HOME = gql`
             }
         }
     }
-    ${POST_FRAGMENT}
-    ${IMAGE_FRAGMENT}
 `
 export const GET_ALL_NEWS = gql`
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
     query GET_ALL_NEWS($id: ID!, $first: Int, $after: String) {
         page: page(id: $id, idType: URI) {
             content
@@ -39,10 +42,10 @@ export const GET_ALL_NEWS = gql`
             }
         }
     }
-    ${POST_FRAGMENT}
-    ${IMAGE_FRAGMENT}
 `
 export const LOAD_MORE_NEWS = gql`
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
     query LOAD_MORE_NEWS($first: Int, $after: String) {
         posts(first: $first, after: $after) {
             edges {
@@ -58,6 +61,20 @@ export const LOAD_MORE_NEWS = gql`
             }
         }
     }
+`
+export const GET_POST_BY_URI = gql`
     ${POST_FRAGMENT}
     ${IMAGE_FRAGMENT}
+    ${AUTHOR_FRAGMENT}
+    query GET_POST_BY_URI($id: ID!) {
+        post(id: $id, idType: URI) {
+            ...PostFragment
+            content
+            author {
+                node {
+                    ...AuthorFragment
+                }
+            }
+        }
+    }
 `
