@@ -10,13 +10,13 @@ export default function PostURI({ post }) {
     return (
         <>
             <Head>
-                <title>{post.title}</title>
+                <title>{post?.title}</title>
             </Head>
 
             <div className="main single single-post">
                 <CoverImage
                     featuredImage={post?.featuredImage}
-                    title={post.featuredImage?.node?.altText || post.title}
+                    title={post?.featuredImage?.node?.altText || post?.title}
                     containerClassNames={'w-full h-60 md:h-[450px]'}
                     layout={'fill'}
                     classNames={'object-cover'}
@@ -25,14 +25,14 @@ export default function PostURI({ post }) {
                     <div className="single-head mt-8">
                         <h1>{post.title}</h1>
                         <div className="flex items-center mt-3 text-grey-79">
-                            <PostAuthor author={post.author} />
+                            <PostAuthor author={post?.author} />
                             |
-                            <PostDate date={post.date} />
+                            <PostDate date={post?.date} />
                         </div>
                     </div>
                     <article
                         className='mt-8'
-                        dangerouslySetInnerHTML={{ __html: post.content }}
+                        dangerouslySetInnerHTML={{ __html: post?.content }}
                     ></article>
                 </section>
             </div>

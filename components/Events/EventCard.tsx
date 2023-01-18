@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import CoverImage from '../CoverImage'
 import cx from 'classnames'
+import EventDate from './EventDate'
 
 type Event = {
     uri: string
@@ -53,18 +54,11 @@ export default function EventCard({
                     />
                 )}
 
-                {/* if StartDate + End Date  else if only StartDate*/}
-                {event.event_details.eventStartDate &&
-                event.event_details.eventEndDate ? (
-                    <p className="flex text-sm text-grey-79 my-2">
-                        Du {event.event_details.eventStartDate} au{' '}
-                        {event.event_details.eventEndDate}
-                    </p>
-                ) : event.event_details.eventStartDate ? (
-                    <p className="text-sm text-grey-79 my-2">
-                        {event.event_details.eventStartDate}
-                    </p>
-                ) : null}
+                <EventDate
+                    startDate={event.event_details.eventStartDate}
+                    endDate={event.event_details.eventEndDate}
+                    dateClassNames="text-sm text-grey-79 my-2"
+                />
 
                 <h3>{event.title}</h3>
                 {displayExcerpt && (

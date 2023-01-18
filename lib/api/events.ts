@@ -37,7 +37,7 @@ export const GET_ALL_EVENTS = gql`
             edges {
                 cursor
                 node {
-                    ...eventFragment
+                    ...EventFragment
                     excerpt
                 }
             }
@@ -52,7 +52,7 @@ export const LOAD_MORE_EVENTS = gql`
             edges {
                 cursor
                 node {
-                    ...eventFragment
+                    ...EventFragment
                     excerpt
                 }
             }
