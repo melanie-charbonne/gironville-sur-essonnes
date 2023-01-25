@@ -13,14 +13,14 @@ export default function EventURI({ event }) {
             </Head>
 
             <div className="main single single-post">
-                <CoverImage
-                    featuredImage={event?.featuredImage}
-                    title={event?.featuredImage?.node?.altText || event?.title}
-                    containerClassNames={'w-full h-60 md:h-[450px]'}
-                    layout={'fill'}
-                    classNames={'object-cover'}
-                />
                 <section>
+                    <CoverImage
+                        featuredImage={event?.featuredImage}
+                        title={event?.featuredImage?.node?.altText || event?.title}
+                        containerClassNames={'w-full h-60 md:h-[540px]'}
+                        layout={'fill'}
+                        classNames={'object-cover'}
+                    />
                     <div className="single-head mt-8">
                         <h1>{event?.title}</h1>
                         <div className="md:inline-flex md:justifiy-between md:gap-20 mt-8 p-6 bg-blue-light rounded">

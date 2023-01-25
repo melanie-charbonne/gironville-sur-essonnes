@@ -29,21 +29,28 @@ export default function CoverImage({
     const altText = featuredImage?.node?.altText
     return (
         <>
-            <div
-                className={cx('image-container relative', containerClassNames)}
-            >
-                <Image
-                    src={featuredImage?.node?.sourceUrl}
-                    alt={
-                        altText ? altText : `Image de couverture pour ${title}`
-                    }
-                    width={width}
-                    height={height}
-                    sizes={sizes}
-                    layout={layout}
-                    className={classNames}
-                />
-            </div>
+            {featuredImage?.node?.sourceUrl && (
+                <div
+                    className={cx(
+                        'image-container relative',
+                        containerClassNames
+                    )}
+                >
+                    <Image
+                        src={featuredImage?.node?.sourceUrl}
+                        alt={
+                            altText
+                                ? altText
+                                : `Image de couverture pour ${title}`
+                        }
+                        width={width}
+                        height={height}
+                        sizes={sizes}
+                        layout={layout}
+                        className={classNames}
+                    />
+                </div>
+            )}
         </>
     )
 }

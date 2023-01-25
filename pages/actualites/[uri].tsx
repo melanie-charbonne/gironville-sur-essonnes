@@ -14,16 +14,16 @@ export default function PostURI({ post }) {
             </Head>
 
             <div className="main single single-post">
-                <CoverImage
-                    featuredImage={post?.featuredImage}
-                    title={post?.featuredImage?.node?.altText || post?.title}
-                    containerClassNames={'w-full h-60 md:h-[450px]'}
-                    layout={'fill'}
-                    classNames={'object-cover'}
-                />
                 <section>
+                    <CoverImage
+                        featuredImage={post?.featuredImage}
+                        title={post?.featuredImage?.node?.altText || post?.title}
+                        containerClassNames={'w-full h-60 md:h-[540px]'}
+                        layout={'fill'}
+                        classNames={'object-cover'}
+                    />
                     <div className="single-head mt-8">
-                        <h1>{post.title}</h1>
+                        <h1>{post?.title}</h1>
                         <div className="flex items-center mt-3 text-grey-79">
                             <PostAuthor author={post?.author} />
                             |

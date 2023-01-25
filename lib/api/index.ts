@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
-export const getTheHero = gql`
-    query getTheHero($id: ID = "/accueil") {
+export const GET_THE_HERO = gql`
+    query GET_THE_HERO($id: ID = "/accueil") {
         page(id: $id, idType: URI) {
             homePage {
                 theHero {
@@ -12,26 +12,6 @@ export const getTheHero = gql`
                         sourceUrl
                     }
                 }
-            }
-        }
-    }
-`
-export const getEditoForHome = gql`
-    query getEditoForHome($id: ID = "/accueil") {
-        page(id: $id, idType: URI) {
-            homePage {
-                dictionary {
-                    editoImage {
-                        altText
-                        sourceUrl
-                    }
-                }
-            }
-        }
-        editos(last: 1, where: { orderby: { field: DATE, order: DESC } }) {
-            nodes {
-                title
-                excerpt
             }
         }
     }

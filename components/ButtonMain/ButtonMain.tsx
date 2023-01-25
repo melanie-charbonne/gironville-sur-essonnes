@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import classNames from 'classnames'
+import cx from 'classnames'
 import styles from './ButtonMain.module.scss'
 import ArrowLeft from '../../asset/images/icons/arrow-left.svg'
 
@@ -7,20 +7,30 @@ type ButtonMain = {
     arrow?: boolean
     secondary?: boolean
     loading?: boolean
+    justify?: string
     color?: string
     link?: string
     text: string
     onClick?: () => void
 }
 
-export default function ButtonMain({ arrow, secondary, loading, color, link, text, onClick }: ButtonMain) {
+export default function ButtonMain({
+    arrow,
+    secondary,
+    loading,
+    justify = 'justify-center',
+    color,
+    link,
+    text,
+    onClick,
+}: ButtonMain) {
     return (
         <>
             {link ? (
                 <Link href={link}>
-                    <div className="flex justify-center">
+                    <div className={cx(`${justify}`, 'flex')}>
                         <button
-                            className={classNames(
+                            className={cx(
                                 `${styles.button}`,
                                 'button',
                                 'text-center',
@@ -48,7 +58,7 @@ export default function ButtonMain({ arrow, secondary, loading, color, link, tex
                 <div className="flex justify-center no-link">
                     <button
                         onClick={onClick}
-                        className={classNames(
+                        className={cx(
                             `${styles.button}`,
                             'button',
                             'text-center',

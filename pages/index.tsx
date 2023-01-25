@@ -6,7 +6,8 @@ import EventCard from '../components/Events/EventCard'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Image from 'next/image'
 import Footer from '../components/Footer'
-import { getTheHero, getEditoForHome } from '../lib/api/index'
+import { GET_THE_HERO } from '../lib/api/index'
+import { GET_EDITO_FOR_HOME } from '../lib/api/editos'
 import { GET_NEWS_FOR_HOME } from '../lib/api/news'
 import { GET_EVENTS_FOR_HOME } from '../lib/api/events'
 import { client } from '../lib/apollo'
@@ -121,7 +122,7 @@ export default function Home({
                         {edito.map((edito) => {
                             return (
                                 <>
-                                    <article key={edito.uri}>
+                                    <article key={edito.uri} className='mb-6'>
                                         <h3 className="mb-3 font-hn">
                                             {edito.title}
                                         </h3>
@@ -131,6 +132,13 @@ export default function Home({
                                             }}
                                         />
                                     </article>
+                                    <ButtonMain
+                                        link={edito.uri}
+                                        text={"Lire l'edito"}
+                                        justify={'justify-start'}
+                                        arrow
+                                        secondary
+                                    />
                                 </>
                             )
                         })}
@@ -148,7 +156,7 @@ export const getStaticProps = async () => {
     })
 
     const { data: theHeroData } = await client.query({
-        query: getTheHero,
+        query: GET_THE_HERO,
     })
 
     const { data: eventsData } = await client.query({
@@ -181,7 +189,7 @@ export const getStaticProps = async () => {
     })
 
     const { data: editoData } = await client.query({
-        query: getEditoForHome,
+        query: GET_EDITO_FOR_HOME,
     })
     return {
         props: {
