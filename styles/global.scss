@@ -54,15 +54,15 @@
         }
     }
 
-    section {
+    section, header, footer {
         width: 100%;
         @apply px-4;
         @apply md:px-7;
         @apply lg:px-12;
     }
-    .main {
-        @apply py-4;
-        @apply lg:py-16;
+    main {
+        @apply pb-4;
+        @apply lg:pb-16;
         @apply w-screen;
     }
 }

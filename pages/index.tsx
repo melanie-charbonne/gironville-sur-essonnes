@@ -21,132 +21,125 @@ export default function Home({
     editoImage,
 }) {
     return (
-        <div>
+        <>
             <Head>
                 <title>Mairie de Gironville-sur-Essonnes</title>
                 <link rel="icon" href="favicon.ico"></link>
             </Head>
-            {/* To do: TheHeader */}
-            <div className="main">
-                <TheHero page={page} />
-                <section className="latest-posts mt-9 lg:mt-15">
-                    <SectionTitle
-                        titleMain={sectionTitles.sectionNews.sectionNewsTitle}
-                        titleWatermark={
-                            sectionTitles.sectionNews.sectionNewsWatermark
-                        }
-                    ></SectionTitle>
-                    <div className="latest-posts-container grid gap-6 lg:gap-12 grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 grid-flow-row mb-9 lg:mb-15">
-                        {posts.map((post, index) => {
-                            if (index === 0) {
-                                return (
-                                    <PostCard
-                                        key={post.uri}
-                                        post={post}
-                                        width={400}
-                                        height={560}
-                                        layout={'responsive'}
-                                    ></PostCard>
-                                )
-                            } else {
-                                return (
-                                    <PostCard
+
+            <TheHero page={page} />
+            <section className="latest-posts mt-9 lg:mt-15">
+                <SectionTitle
+                    titleMain={sectionTitles.sectionNews.sectionNewsTitle}
+                    titleWatermark={
+                        sectionTitles.sectionNews.sectionNewsWatermark
+                    }
+                ></SectionTitle>
+                <div className="latest-posts-container grid gap-6 lg:gap-12 grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 grid-flow-row mb-9 lg:mb-15">
+                    {posts.map((post, index) => {
+                        if (index === 0) {
+                            return (
+                                <PostCard
+                                    key={post.uri}
+                                    post={post}
+                                    width={400}
+                                    height={560}
+                                    layout={'responsive'}
+                                ></PostCard>
+                            )
+                        } else {
+                            return (
+                                <PostCard
                                     key={post.uri}
                                     post={post}
                                     width={400}
                                     height={200}
                                     layout={'responsive'}
-                                    ></PostCard>
-                                )
-                            }
-                        })}
-                    </div>
-                    <ButtonMain
-                        link={'actualites'}
-                        text={"Toute l'actualité"}
-                        arrow
-                        secondary
-                    />
-                </section>
-                <section className="latest-events background_curve mt-12 lg:mt-24 py-9 lg:py-16 bg-blue-light">
+                                ></PostCard>
+                            )
+                        }
+                    })}
+                </div>
+                <ButtonMain
+                    link={'actualites'}
+                    text={"Toute l'actualité"}
+                    arrow
+                    secondary
+                />
+            </section>
+            <section className="latest-events background_curve mt-12 lg:mt-24 py-9 lg:py-16 bg-blue-light">
+                <SectionTitle
+                    titleMain={sectionTitles.sectionAgenda.sectionAgendaTitle}
+                    titleWatermark={
+                        sectionTitles.sectionAgenda.sectionAgendaWatermark
+                    }
+                    theme={'light'}
+                ></SectionTitle>
+                <div className="latest-events_container grid gap-6 grid-cols-2 lg:grid-cols-4 mb-9 lg:mb-15">
+                    {events.map((event) => {
+                        return (
+                            <EventCard
+                                key={event.uri}
+                                event={event}
+                                width={310}
+                                height={375}
+                                layout={'responsive'}
+                            ></EventCard>
+                        )
+                    })}
+                </div>
+                <ButtonMain
+                    link={'agenda'}
+                    text={'Tous les évènements'}
+                    color={'light'}
+                    arrow
+                />
+            </section>
+            <section className="edito grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 md:gap-9 mt-12 lg:mt-24">
+                <div className="hidden sm:inline-block">
+                    <Image
+                        src={editoImage.sourceUrl}
+                        width={475}
+                        height={620}
+                        layout={'responsive'}
+                    ></Image>
+                </div>
+
+                <div className="md:col-span-2 self-center">
                     <SectionTitle
-                        titleMain={
-                            sectionTitles.sectionAgenda.sectionAgendaTitle
-                        }
+                        left
+                        titleMain={sectionTitles.sectionEdito.sectionEditoTitle}
                         titleWatermark={
-                            sectionTitles.sectionAgenda.sectionAgendaWatermark
+                            sectionTitles.sectionEdito.sectionEditoWatermark
                         }
-                        theme={'light'}
                     ></SectionTitle>
-                    <div className="latest-events_container grid gap-6 grid-cols-2 lg:grid-cols-4 mb-9 lg:mb-15">
-                        {events.map((event) => {
-                            return (
-                                <EventCard
-                                    key={event.uri}
-                                    event={event}
-                                    width={310}
-                                    height={375}
-                                    layout={'responsive'}
-                                ></EventCard>
-                            )
-                        })}
-                    </div>
-                    <ButtonMain
-                        link={'agenda'}
-                        text={'Tous les évènements'}
-                        color={'light'}
-                        arrow
-                    />
-                </section>
-                <section className="edito grid sm:grid-cols-2 md:grid-cols-3 sm:gap-6 md:gap-9 mt-12 lg:mt-24">
-                    <div className="hidden sm:inline-block">
-                        <Image
-                            src={editoImage.sourceUrl}
-                            width={475}
-                            height={620}
-                            layout={'responsive'}
-                        ></Image>
-                    </div>
 
-                    <div className="md:col-span-2 self-center">
-                        <SectionTitle
-                            left
-                            titleMain={
-                                sectionTitles.sectionEdito.sectionEditoTitle
-                            }
-                            titleWatermark={
-                                sectionTitles.sectionEdito.sectionEditoWatermark
-                            }
-                        ></SectionTitle>
-
-                        {edito.map((edito) => {
-                            return (
-                                <>
-                                    <article key={edito.uri} className='mb-6'>
-                                        <h3 className="mb-3 font-hn">
-                                            {edito.title}
-                                        </h3>
-                                        <div
-                                            dangerouslySetInnerHTML={{
-                                                __html: edito.excerpt,
-                                            }}
-                                        />
-                                    </article>
-                                    <ButtonMain
-                                        link={edito.uri}
-                                        text={"Lire l'edito"}
-                                        justify={'justify-start'}
-                                        arrow
-                                        secondary
+                    {edito.map((edito) => {
+                        return (
+                            <>
+                                <article key={edito.uri} className="mb-6">
+                                    <h3 className="mb-3 font-hn">
+                                        {edito.title}
+                                    </h3>
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: edito.excerpt,
+                                        }}
                                     />
-                                </>
-                            )
-                        })}
-                    </div>
-                </section>
-            </div>
-            <Footer></Footer>
-        </div>
+                                </article>
+                                <ButtonMain
+                                    link={edito.uri}
+                                    text={"Lire l'edito"}
+                                    justify={'justify-start'}
+                                    arrow
+                                    secondary
+                                />
+                            </>
+                        )
+                    })}
+                </div>
+            </section>
+        </>
     )
 }
 

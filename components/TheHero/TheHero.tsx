@@ -11,6 +11,7 @@ export default function TheHero({ page }) {
             alt={page?.homePage?.theHero?.heroImage.altText}
             src={page?.homePage?.theHero?.heroImage.sourceUrl}
             className="md:opacity-60 w-full"
+            priority
         />
     )
 
@@ -19,7 +20,7 @@ export default function TheHero({ page }) {
             <section className={`${styles.hero} relative`}>
                 <div className="hero_image w-full flex flex-wrap relative">
                     <div
-                        className={`${styles.hero_image_item} ${styles.background_curve} w-full background_curve flex md:bg-gradient-to-r from-blue-dark to-neutral-500`}
+                        className={`${styles.hero_image_item} ${styles.background_curve} w-full background_curve  md:bg-gradient-to-r from-blue-dark to-neutral-500`}
                     >
                         {image}
                     </div>
