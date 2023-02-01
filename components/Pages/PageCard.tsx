@@ -15,6 +15,7 @@ type PageCardProps = {
     }
     width?: number
     height?: number
+    sizes?: string
     layout?: string
     objectFit?: string
     containerClassNames?: string
@@ -23,6 +24,7 @@ const PageCard = ({
     pageChildren,
     width,
     height,
+    sizes,
     layout,
     objectFit,
     containerClassNames,
@@ -35,6 +37,7 @@ const PageCard = ({
                         <CoverImage
                             width={width}
                             height={height}
+                            sizes={sizes}
                             title={pageChildren.title}
                             featuredImage={pageChildren.featuredImage}
                             layout={layout}

@@ -22,6 +22,7 @@ type EventCardProps = {
     event: Event
     width?: number
     height?: number
+    sizes?: string
     layout?: string
     objectFit?: string
     containerClassNames?: string
@@ -31,6 +32,7 @@ export default function EventCard({
     event,
     width,
     height,
+    sizes,
     layout,
     objectFit,
     containerClassNames,
@@ -45,9 +47,10 @@ export default function EventCard({
                         featuredImage={event.featuredImage}
                         width={width}
                         height={height}
+                        sizes={sizes}
                         layout={layout}
                         classNames={cx(
-                            'rounded-md transition duration-250',
+                            'transition duration-250',
                             objectFit
                         )}
                         containerClassNames={containerClassNames}

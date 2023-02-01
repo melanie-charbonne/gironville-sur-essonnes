@@ -12,6 +12,7 @@ const EventsList = ({ events }) => {
                 <EventCard
                     key={event.uri}
                     event={event}
+                    sizes={'(max-width: 1024px) 50vw, 33vw'}
                     layout={'fill'}
                     objectFit={'object-cover'}
                     containerClassNames={'w-full h-56 md:h-[300px]'}

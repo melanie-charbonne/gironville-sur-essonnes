@@ -7,7 +7,7 @@ import PageCard from '../components/Pages/PageCard'
 
 
 export default function PageURI({ page }) {
-    const children = page.children.nodes
+    const children = page?.children?.nodes
     return (
         <>
             <Head>
@@ -21,12 +21,13 @@ export default function PageURI({ page }) {
                         title={
                             page?.featuredImage?.node?.altText || page?.title
                         }
+                        sizes={'80vw'}
                         containerClassNames={'w-full h-64 md:h-[560px]'}
                         layout={'fill'}
                         classNames={'object-cover'}
                     />
                     <div className="single-head mt-6 lg:mt-12">
-                        <h1>{page.title}</h1>
+                        <h1>{page?.title}</h1>
                     </div>
                     <article
                         className="mt-8"
@@ -42,6 +43,7 @@ export default function PageURI({ page }) {
                                     <PageCard
                                         key={child.id}
                                         pageChildren={child}
+                                        sizes={'(max-width: 1024px) 50vw, 33vw'}
                                         layout={'fill'}
                                         objectFit={'object-cover'}
                                         containerClassNames={
@@ -61,7 +63,7 @@ export default function PageURI({ page }) {
 }
 
 const haveChildren = (pageChildren) => {
-    return pageChildren.length > 1 && true
+    return pageChildren?.length > 1
 }
 
 export const getStaticProps = async ({ params }) => {

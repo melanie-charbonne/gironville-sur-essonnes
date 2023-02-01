@@ -9,15 +9,25 @@ import '../styles/global.scss'
 import Layout from '../components/Layout/layout'
 import { ApolloProvider } from '@apollo/client/react'
 import { client } from '../lib/apollo'
+import { GET_MENUS } from '../lib/api/menus'
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps, mainMenu }) {
     return (
         <ApolloProvider client={client}>
-            <Layout>
+            <Layout mainMenu={mainMenu}>
                 <Component {...pageProps} />
             </Layout>
         </ApolloProvider>
     )
 }
 
-export default MyApp
+App.getInitialProps = async function () {
+    const { data: mainMenu = [] } = await client.query({
+        query: GET_MENUS,
+    })
+    return {
+        mainMenu,
+    }
+}
+
+export default App

@@ -3,13 +3,8 @@ import { MENU_FRAGMENT } from './fragments/menusFragment'
 
 export const GET_MENUS = gql`
     ${MENU_FRAGMENT}
-    query GET_MENUS(
-        $locationHeaderMenu: MenuLocationEnum = PRIMARY
-        $locationFooterMenu: MenuLocationEnum = FOOTER
-    ) {
-        headerMenu: menuItems(
-            where: { location: $locationHeaderMenu, parentId: "0" }
-        ) {
+    query GET_MENUS {
+        headerMenu: menuItems(where: { location: PRIMARY, parentId: "0" }) {
             edges {
                 node {
                     ...MenuFragment
@@ -24,7 +19,7 @@ export const GET_MENUS = gql`
             }
         }
         footerMenu: menuItems(
-            where: { location: $locationFooterMenu, parentId: "0" }
+            where: { location: FOOTER, parentId: "0" }
         ) {
             edges {
                 node {

@@ -19,6 +19,7 @@ type PostCardProps = {
     post: Post
     width?: number
     height?: number
+    sizes?: string
     layout?: string
     objectFit?: string
     containerClassNames?: string
@@ -29,6 +30,7 @@ export default function PostCard({
     post,
     width,
     height,
+    sizes,
     layout,
     objectFit,
     containerClassNames,
@@ -42,11 +44,12 @@ export default function PostCard({
                     <CoverImage
                         width={width}
                         height={height}
+                        sizes={sizes}
                         title={post.title}
                         featuredImage={post.featuredImage}
                         layout={layout}
                         classNames={cx(
-                            'rounded-md transition duration-250',
+                            'transition duration-250',
                             objectFit
                         )}
                         containerClassNames={containerClassNames}

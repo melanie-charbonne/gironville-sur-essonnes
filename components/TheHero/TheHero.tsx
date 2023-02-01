@@ -3,24 +3,24 @@ import styles from './TheHero.module.scss'
 
 export default function TheHero({ page }) {
     const image = (
-        <Image
-            width={1440}
-            height={600}
-            layout="responsive"
-            sizes="100vw"
-            alt={page?.homePage?.theHero?.heroImage.altText}
-            src={page?.homePage?.theHero?.heroImage.sourceUrl}
-            className="md:opacity-60 w-full"
-            priority
-        />
+        <div className="image-container relative w-full h-60 md:h-[520px] lg:h-[600px]">
+            <Image
+                layout="fill"
+                sizes="100vw"
+                alt={page?.homePage?.theHero?.heroImage.altText}
+                src={page?.homePage?.theHero?.heroImage.sourceUrl}
+                className="md:opacity-60 w-full object-cover"
+                priority
+            />
+        </div>
     )
 
     return (
         <>
-            <section className={`${styles.hero} relative`}>
+            <section className='relative'>
                 <div className="hero_image w-full flex flex-wrap relative">
                     <div
-                        className={`${styles.hero_image_item} ${styles.background_curve} w-full background_curve  md:bg-gradient-to-r from-blue-dark to-neutral-500`}
+                        className={`${styles.hero_image_item} ${styles.background_curve} w-full background_curve md:bg-gradient-to-r from-blue-dark to-neutral-500`}
                     >
                         {image}
                     </div>
@@ -32,8 +32,8 @@ export default function TheHero({ page }) {
                 md:p-0
                 md:absolute
                 md:top-1/2
-                md:left-4
-                md:lg:left-14
+                md:left-16
+                md:lg:left-24
                 md:-translate-y-1/2
                 bg-gradient-to-r from-blue-30 
                 md:from-transparent

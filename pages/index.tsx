@@ -12,6 +12,7 @@ import { GET_NEWS_FOR_HOME } from '../lib/api/news'
 import { GET_EVENTS_FOR_HOME } from '../lib/api/events'
 import { client } from '../lib/apollo'
 import { gql } from '@apollo/client'
+
 export default function Home({
     posts,
     page,
@@ -184,6 +185,7 @@ export const getStaticProps = async () => {
     const { data: editoData } = await client.query({
         query: GET_EDITO_FOR_HOME,
     })
+
     return {
         props: {
             posts: postsData?.posts?.nodes,
