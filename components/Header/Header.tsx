@@ -16,7 +16,7 @@ const Header = ({ mainMenu }) => {
                         </Link>
                     </div>
                     {!isEmpty(mainMenu) && (
-                        <div className="w-1/4 lg:w-3/4 flex justify-end items-center space-x-4">
+                        <div className="w-1/4 lg:w-3/4 flex justify-end items-center space-x-4 relative">
                             <Navigation mainMenu={mainMenu} />
                         </div>
                     )}

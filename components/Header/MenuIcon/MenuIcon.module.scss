@@ -1,11 +1,16 @@
 @use '../../../styles/mixins' as *;
 
 @include media-breakpoint-down(lg) {
+
     .menuIcon {
         display: flex;
         flex-direction: column;
         width: 40px;
+        position: fixed;
+        top:43px;
+        right: 30px;
         cursor: pointer;
+        z-index: 99;
         span {
             background: theme('colors.blue.dark');
             border-radius: 10px;
@@ -24,6 +29,7 @@
         }
         &.menuOpen {
             span {
+                background: theme('colors.white');
                 &:nth-of-type(1) {
                     transform-origin: bottom;
                     transform: rotateZ(45deg) translate(3px, -1px);

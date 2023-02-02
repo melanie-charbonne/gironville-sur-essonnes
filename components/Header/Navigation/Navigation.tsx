@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { isEmpty } from 'lodash'
 import Link from 'next/link'
 import MenuIcon from '../MenuIcon/MenuIcon'
-import cx from 'classnames'
-const Navigation = ({mainMenu}) => {
-   
+import classNames from 'classnames/bind'
+import styles from './Navigation.module.scss'
+
+let cx = classNames.bind(styles)
+
+const Navigation = ({ mainMenu }) => {
     if (isEmpty(mainMenu)) {
         return null
     }
@@ -13,23 +16,21 @@ const Navigation = ({mainMenu}) => {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen)
     }
-    
+
     return (
         <>
             <nav
-                className={cx({
-                    'block': menuOpen,
-                    'hidden': !menuOpen
+                className={cx('nav', {
+                    menuOpen: menuOpen,
                 })}
             >
-                <ul
-                    className={cx({
-                        'flex justify-end items-center space-x-4': menuOpen,
-                    })}
-                >
+                <ul className="nav__items-wrapper">
                     {mainMenu.map((menuItem) => {
                         return (
-                            <li key={menuItem?.node?.id}>
+                            <li
+                                key={menuItem?.node?.id}
+                                className="nav__item"
+                            >
                                 <Link href={menuItem?.node?.path}>
                                     <a className="font-medium">
                                         {menuItem?.node?.label}
