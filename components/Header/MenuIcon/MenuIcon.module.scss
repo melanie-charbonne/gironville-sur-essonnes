@@ -1,6 +1,5 @@
 @use '../../../styles/mixins' as *;
 
-@include media-breakpoint-down(lg) {
 
     .menuIcon {
         display: flex;
@@ -11,6 +10,9 @@
         right: 30px;
         cursor: pointer;
         z-index: 99;
+        @include media-breakpoint-up(lg) {
+            display: none;
+        }
         span {
             background: theme('colors.blue.dark');
             border-radius: 10px;
@@ -46,4 +48,4 @@
             }
         }
     }
-}
+

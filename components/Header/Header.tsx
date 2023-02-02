@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Navigation from './Navigation/Navigation'
 import {isEmpty} from 'lodash'
 
-
 const Header = ({ mainMenu }) => {
         return (
             <>
@@ -16,8 +15,8 @@ const Header = ({ mainMenu }) => {
                         </Link>
                     </div>
                     {!isEmpty(mainMenu) && (
-                        <div className="w-1/4 lg:w-3/4 flex justify-end items-center space-x-4 relative">
-                            <Navigation mainMenu={mainMenu} />
+                        <div className="w-1/4 lg:w-3/4 flex justify-end items-center relative">
+                            <Navigation mainMenu={mainMenu}/>
                         </div>
                     )}
                 </header>
