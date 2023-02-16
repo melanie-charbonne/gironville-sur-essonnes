@@ -8,7 +8,7 @@ import {isEmpty} from 'lodash'
 const Header = ({ mainMenu }) => {
         return (
             <>
-                <header className="flex py-4 lg:py-8">
+                <header className="flex py-4 lg:py-8 sticky top-0 bg-white z-[97] shadow-sm">
                     <div className="w-3/4 lg:w-1/4">
                         <Link href="/" passHref legacyBehavior>
                             <LogoWebsite />
@@ -16,7 +16,7 @@ const Header = ({ mainMenu }) => {
                     </div>
                     {!isEmpty(mainMenu) && (
                         <div className="w-1/4 lg:w-3/4 flex justify-end items-center relative">
-                            <Navigation mainMenu={mainMenu}/>
+                            <Navigation mainMenu={mainMenu} />
                         </div>
                     )}
                 </header>

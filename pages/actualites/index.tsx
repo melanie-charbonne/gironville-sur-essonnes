@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import LoadMorePosts from '../../components/Posts/LoadMorePosts'
 import SectionTitle from '../../components/SectionTitle'
-import { client } from '../../lib/apollo'
+import { client } from '../../lib/apolloClient'
 import { gql } from '@apollo/client'
 import { GET_ALL_NEWS } from '../../lib/api/news'
 import { PER_PAGE_FIRST } from '../../lib/constants'

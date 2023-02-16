@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
+import { useWindowListener } from '../../../hooks/useWindowListener'
 import Link from 'next/link'
 import MenuIcon from '../MenuIcon/MenuIcon'
 import classNames from 'classnames/bind'
@@ -30,6 +31,10 @@ const Navigation = ({ mainMenu }) => {
         }
     }, [menuOpen])
 
+    useWindowListener('resize', () => {
+        handleHide()
+    })
+
     return (
         <>
             <div
@@ -53,10 +58,11 @@ const Navigation = ({ mainMenu }) => {
                                 onBlur={handleHide}
                                 onFocus={handleShow}
                             >
-                                <Link href={menuItem?.node?.path}>
-                                    <a className="font-medium">
-                                        {menuItem?.node?.label}
-                                    </a>
+                                <Link
+                                    href={menuItem?.node?.path}
+                                    className="font-medium"
+                                >
+                                    menuItem?.node?.label
                                 </Link>
                             </li>
                         )

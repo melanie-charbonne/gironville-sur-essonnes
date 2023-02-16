@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Footer from '../../components/Footer'
-import { client } from '../../lib/apollo'
+import { client } from '../../lib/apolloClient'
 import { GET_EVENT_BY_URI } from '../../lib/api/events'
 import CoverImage from '../../components/CoverImage'
 import EventDate from '../../components/Events/EventDate'

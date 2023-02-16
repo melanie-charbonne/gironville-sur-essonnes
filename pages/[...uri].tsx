@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Footer from '../components/Footer'
-import { client } from '../lib/apollo'
+import { client } from '../lib/apolloClient'
 import { GET_PAGE_BY_URI } from '../lib/api/pages'
 import CoverImage from '../components/CoverImage'
 import PageCard from '../components/Pages/PageCard'

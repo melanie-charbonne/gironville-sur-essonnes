@@ -1,5 +1,5 @@
-import { gql } from "@apollo/client";
-import { IMAGE_FRAGMENT } from "./fragments/imageFragment";
+import { gql } from '@apollo/client'
+import { IMAGE_FRAGMENT } from './fragments/imageFragment'
 
 export const GET_PAGE_BY_URI = gql`
     ${IMAGE_FRAGMENT}
@@ -27,6 +27,31 @@ export const GET_PAGE_BY_URI = gql`
                     }
                 }
             }
+        }
+    }
+`
+
+export const GET_PAGE = gql`
+    query GET_PAGE($uri: String) {
+        page: pageBy(uri: $uri) {
+            id
+            title
+            content
+            slug
+            uri
+        }
+    }
+`
+
+export const GET_PAGE_BY_ID = gql`
+    query GET_PAGE_BY_ID($id: ID!) {
+        page(idType: DATABASE_ID, id: $id) {
+            id
+            title
+            content
+            slug
+            uri
+            status
         }
     }
 `

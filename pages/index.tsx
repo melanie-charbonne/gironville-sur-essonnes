@@ -10,7 +10,7 @@ import { GET_THE_HERO } from '../lib/api/index'
 import { GET_EDITO_FOR_HOME } from '../lib/api/editos'
 import { GET_NEWS_FOR_HOME } from '../lib/api/news'
 import { GET_EVENTS_FOR_HOME } from '../lib/api/events'
-import { client } from '../lib/apollo'
+import { client } from '../lib/apolloClient'
 import { gql } from '@apollo/client'
 
 export default function Home({

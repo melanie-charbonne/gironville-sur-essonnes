@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Footer from '../../components/Footer'
 import { gql } from '@apollo/client'
-import { client } from '../../lib/apollo'
+import { client } from '../../lib/apolloClient'
 import { GET_EDITO_BY_URI } from '../../lib/api/editos'
 import CoverImage from '../../components/CoverImage'
 import PostDate from '../../components/Posts/PostDate'
