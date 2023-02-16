@@ -45,7 +45,6 @@ export default function Home({
                                     post={post}
                                     width={400}
                                     height={560}
-                                    layout={'responsive'}
                                 ></PostCard>
                             )
                         } else {
@@ -55,7 +54,6 @@ export default function Home({
                                     post={post}
                                     width={400}
                                     height={200}
-                                    layout={'responsive'}
                                 ></PostCard>
                             )
                         }
@@ -84,7 +82,6 @@ export default function Home({
                                 event={event}
                                 width={310}
                                 height={375}
-                                layout={'responsive'}
                             ></EventCard>
                         )
                     })}
@@ -100,9 +97,9 @@ export default function Home({
                 <div className="hidden sm:inline-block">
                     <Image
                         src={editoImage.sourceUrl}
+                        alt='Editos du maire - Gironville-sur-Essonnes'
                         width={475}
                         height={620}
-                        layout={'responsive'}
                     ></Image>
                 </div>
 

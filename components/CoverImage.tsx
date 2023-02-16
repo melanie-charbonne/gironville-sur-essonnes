@@ -4,7 +4,7 @@ type CoverImageProps = {
     width?: number
     height?: number
     sizes?: string
-    layout?: any
+    fill?: boolean
     classNames?: string
     containerClassNames?: string
     title: string
@@ -20,7 +20,7 @@ export default function CoverImage({
     width,
     height,
     sizes,
-    layout,
+    fill,
     title,
     featuredImage,
     containerClassNames,
@@ -46,7 +46,6 @@ export default function CoverImage({
                         width={width}
                         height={height}
                         sizes={sizes}
-                        layout={layout}
                         className={classNames}
                     />
                 </div>

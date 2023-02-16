@@ -13,8 +13,8 @@ type Event = {
     }
     title: string
     event_details: {
-        eventStartDate?: String
-        eventEndDate?: String
+        eventStartDate?: string
+        eventEndDate?: string
     }
     excerpt: string
 }
@@ -23,7 +23,6 @@ type EventCardProps = {
     width?: number
     height?: number
     sizes?: string
-    layout?: string
     objectFit?: string
     containerClassNames?: string
     displayExcerpt?: boolean
@@ -33,7 +32,6 @@ export default function EventCard({
     width,
     height,
     sizes,
-    layout,
     objectFit,
     containerClassNames,
     displayExcerpt,
@@ -48,7 +46,7 @@ export default function EventCard({
                         width={width}
                         height={height}
                         sizes={sizes}
-                        layout={layout}
+                        fill
                         classNames={cx(
                             'transition duration-250',
                             objectFit

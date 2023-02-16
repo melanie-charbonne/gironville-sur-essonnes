@@ -20,7 +20,6 @@ type PostCardProps = {
     width?: number
     height?: number
     sizes?: string
-    layout?: string
     objectFit?: string
     containerClassNames?: string
     displayExcerpt?: boolean
@@ -31,7 +30,6 @@ export default function PostCard({
     width,
     height,
     sizes,
-    layout,
     objectFit,
     containerClassNames,
     displayExcerpt,
@@ -47,7 +45,7 @@ export default function PostCard({
                         sizes={sizes}
                         title={post.title}
                         featuredImage={post.featuredImage}
-                        layout={layout}
+                        fill
                         classNames={cx(
                             'transition duration-250',
                             objectFit

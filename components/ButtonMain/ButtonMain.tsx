@@ -3,7 +3,7 @@ import cx from 'classnames'
 import styles from './ButtonMain.module.scss'
 import ArrowLeft from '../../asset/images/icons/arrow-left.svg'
 
-type ButtonMain = {
+type ButtonMainProps = {
     arrow?: boolean
     secondary?: boolean
     loading?: boolean
@@ -23,7 +23,7 @@ export default function ButtonMain({
     link,
     text,
     onClick,
-}: ButtonMain) {
+}: ButtonMainProps) {
     return (
         <>
             {link ? (

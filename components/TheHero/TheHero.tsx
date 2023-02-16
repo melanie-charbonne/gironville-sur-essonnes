@@ -5,9 +5,9 @@ export default function TheHero({ page }) {
     const image = (
         <div className="image-container relative w-full h-60 md:h-[520px] lg:h-[600px]">
             <Image
-                layout="fill"
+                fill
                 sizes="100vw"
-                alt={page?.homePage?.theHero?.heroImage.altText}
+                alt={page?.homePage?.theHero?.heroImage.altText || 'Gironville-sur-essonne'}
                 src={page?.homePage?.theHero?.heroImage.sourceUrl}
                 className="md:opacity-60 w-full object-cover"
                 priority
