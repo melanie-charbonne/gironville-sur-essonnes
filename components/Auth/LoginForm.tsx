@@ -51,7 +51,7 @@ export default function LogInForm() {
                 className="mb-4"
                 data-bitwarden-watching="1"
             >
-                <fieldset disabled={loading} aria-busy={loading}>
+                <fieldset disabled={loading} aria-busy={loading} className="flex flex-col gap-2">
                     <label
                         htmlFor="log-in-email"
                         className="leading-7 text-sm text-gray-600"
@@ -70,7 +70,7 @@ export default function LogInForm() {
                         htmlFor="log-in-password"
                         className="leading-7 text-sm text-gray-600"
                     >
-                        Password
+                        Mot de passe
                     </label>
                     <input
                         id="log-in-password"
@@ -80,15 +80,15 @@ export default function LogInForm() {
                         required
                         className="mb-8 w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
-                    <Link href="/forgot-password">Forgot password?</Link>
+                    {/* <Link href="/forgot-password">Forgot password?</Link> */}
                     {!isEmailValid ? (
-                        <p className="error-message">
-                            Invalid email. Please try again.
+                        <p className="error-message text-sm text-red-600">
+                            Adresse email et/ou mot de passe incorrect(s).
                         </p>
                     ) : null}
                     {!isPasswordValid ? (
-                        <p className="error-message">
-                            Invalid password. Please try again.
+                        <p className="error-message text-sm text-red-600">
+                            Adresse email et/ou mot de passe incorrect(s).
                         </p>
                     ) : null}
                     <button
@@ -96,13 +96,9 @@ export default function LogInForm() {
                         disabled={loading}
                         className="text-white bg-blue-dark border-0 py-2 px-8 focus:outline-none hover:bg-blue-darker rounded text-lg"
                     >
-                        {loading ? 'Logging in...' : 'Log in'}
+                        {loading ? 'Connexion...' : 'Se connecter'}
                     </button>
                 </fieldset>
-                <p className="account-sign-up-message">
-                    Don&#39;t have an account yet?{' '}
-                    <Link href="/sign-up">Sign up</Link>
-                </p>
             </form>
         </>
     )

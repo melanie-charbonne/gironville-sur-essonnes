@@ -20,5 +20,5 @@ export default function AuthContent({ children }: { children: ReactNode }) {
         return <>{children}</>
     }
 
-    return <p>Loading...</p>
+    return <p>Chargement..</p>
 }

@@ -23,5 +23,5 @@ export default function UnAuthContent({ children }: {children: ReactNode}) {
         return <>{children}</>
     }
 
-    return <p>Loading...</p>
+    return <p>Chargement...</p>
 }
