@@ -18,14 +18,16 @@ export default function EditoURI({ post, pageTitle }) {
             <div className="main single single-post">
                 <SectionTitle
                     titleMain={pageTitle.sectionEdito.sectionEditoTitle}
-                    titleWatermark={pageTitle.sectionEdito.sectionEditoWatermark}
+                    titleWatermark={
+                        pageTitle.sectionEdito.sectionEditoWatermark
+                    }
                 ></SectionTitle>
 
                 <CoverImage
                     featuredImage={post?.featuredImage}
                     title={post?.featuredImage?.node?.altText || post?.title}
                     containerClassNames={'w-full h-60 md:h-[450px]'}
-                    layout={'fill'}
+                    fill
                     classNames={'object-cover'}
                 />
                 <section>
@@ -76,7 +78,7 @@ export const getStaticProps = async ({ params }) => {
     return {
         props: {
             post: postData?.edito,
-            pageTitle: pageTitle?.page?.homePage?.dictionary
+            pageTitle: pageTitle?.page?.homePage?.dictionary,
         },
     }
 }

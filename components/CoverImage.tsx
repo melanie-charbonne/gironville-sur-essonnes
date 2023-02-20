@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import cx from 'classnames'
+import { ImgHTMLAttributes } from 'react'
 type CoverImageProps = {
     width?: number
     height?: number
@@ -14,6 +15,7 @@ type CoverImageProps = {
             sourceUrl: string
         }
     }
+    placeholder?: 'blur' | 'empty'
 }
 
 export default function CoverImage({
@@ -25,6 +27,7 @@ export default function CoverImage({
     featuredImage,
     containerClassNames,
     classNames,
+    placeholder,
 }: CoverImageProps) {
     const altText = featuredImage?.node?.altText
     return (
@@ -45,8 +48,10 @@ export default function CoverImage({
                         }
                         width={width}
                         height={height}
+                        fill={fill}
                         sizes={sizes}
                         className={classNames}
+                        placeholder={placeholder}
                     />
                 </div>
             )}

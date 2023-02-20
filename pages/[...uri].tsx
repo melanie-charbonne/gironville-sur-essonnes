@@ -5,7 +5,6 @@ import { GET_PAGE_BY_URI } from '../lib/api/pages'
 import CoverImage from '../components/CoverImage'
 import PageCard from '../components/Pages/PageCard'
 
-
 export default function PageURI({ page }) {
     const children = page?.children?.nodes
     return (
@@ -23,7 +22,7 @@ export default function PageURI({ page }) {
                         }
                         sizes={'80vw'}
                         containerClassNames={'w-full h-64 md:h-[560px]'}
-                        layout={'fill'}
+                        fill
                         classNames={'object-cover'}
                     />
                     <div className="single-head mt-6 lg:mt-12">
@@ -44,7 +43,6 @@ export default function PageURI({ page }) {
                                         key={child.id}
                                         pageChildren={child}
                                         sizes={'(max-width: 1024px) 50vw, 33vw'}
-                                        layout={'fill'}
                                         objectFit={'object-cover'}
                                         containerClassNames={
                                             'w-full h-56 md:h-[300px] mb-2'
@@ -70,7 +68,7 @@ export const getStaticProps = async ({ params }) => {
     const { data: pageData } = await client.query({
         query: GET_PAGE_BY_URI,
         variables: {
-            id: params.uri.join('/')
+            id: params.uri.join('/'),
         },
     })
     return {

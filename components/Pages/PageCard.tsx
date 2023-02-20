@@ -16,7 +16,6 @@ type PageCardProps = {
     width?: number
     height?: number
     sizes?: string
-    layout?: string
     objectFit?: string
     containerClassNames?: string
 }
@@ -25,7 +24,6 @@ const PageCard = ({
     width,
     height,
     sizes,
-    layout,
     objectFit,
     containerClassNames,
 }: PageCardProps) => {
@@ -40,7 +38,7 @@ const PageCard = ({
                             sizes={sizes}
                             title={pageChildren.title}
                             featuredImage={pageChildren.featuredImage}
-                            layout={layout}
+                            
                             classNames={cx(
                                 'transition duration-250',
                                 objectFit
