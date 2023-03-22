@@ -80,21 +80,3 @@ export const getServerSideProps = async (context) => {
         loginRedirectURL
     )
 }
-// export const getServerSideProps = async ({ params }) => {
-//     const { data: pageData } = await client.query({
-//         query: GET_PAGE_BY_ID,
-//         variables: {
-//             id: Number(params?.id) ?? '',
-//         },
-//         context: {
-//             headers: {
-//                 cookie: 'wordpress_logged_in_78040378cfbcd6a3a195dadfcf1b5b39=melaniec%7C1677014170%7CcCdALVcjWGp7GRz2wOqCfnuQ9XQFBHZJ4IEmDRl7S5n%7C4692fb8804d22645dde78b8bfaeaafef5433daf0832ec3ea2d4b0a53b106daf0',
-//             },
-//         },
-//     })
-//     return {
-//         props: {
-//             page: pageData?.page,
-//         },
-//     }
-// }

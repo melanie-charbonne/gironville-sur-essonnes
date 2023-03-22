@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { isEmpty } from 'lodash'
 import { useWindowListener } from '../../../hooks/useWindowListener'
+import { useMediaQuery } from 'react-responsive'
 import Link from 'next/link'
 import MenuIcon from '../MenuIcon/MenuIcon'
 import classNames from 'classnames/bind'
@@ -13,6 +14,7 @@ const Navigation = ({ mainMenu }) => {
         return null
     }
 
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 991px)' })
     const [menuOpen, setMenuOpen] = useState(false)
     const handleToggle = () => {
         setMenuOpen(!menuOpen)
@@ -21,13 +23,15 @@ const Navigation = ({ mainMenu }) => {
     const handleShow = () => setMenuOpen(true)
 
     useEffect(() => {
-        if (menuOpen) {
-            document.body.style.overflow = 'hidden'
-            document.body.style.paddingRight = '15px'
-        }
-        return () => {
-            document.body.style.overflow = 'unset'
-            document.body.style.paddingRight = '0px'
+        if (isTabletOrMobile) {
+            if (menuOpen) {
+                document.body.style.overflow = 'hidden'
+                document.body.style.paddingRight = '15px'
+            }
+            return () => {
+                document.body.style.overflow = 'unset'
+                document.body.style.paddingRight = '0px'
+            }
         }
     }, [menuOpen])
 
@@ -62,7 +66,7 @@ const Navigation = ({ mainMenu }) => {
                                     href={menuItem?.node?.path}
                                     className="font-medium"
                                 >
-                                    menuItem?.node?.label
+                                    {menuItem?.node?.label}
                                 </Link>
                             </li>
                         )

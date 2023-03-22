@@ -1,19 +1,24 @@
 import { ReactNode } from 'react'
+import { useQuery } from '@apollo/client';
+import { GET_MENUS } from '../../lib/api/menus'
 import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 type LayoutProps = {
     children: ReactNode
-    mainMenu: any
 }
-export default function Layout({ children, mainMenu }: LayoutProps) {
-    console.log(mainMenu)
+export default function Layout({ children }: LayoutProps) {
+    const { data, error } = useQuery(GET_MENUS);
+    if (error) console.log(error.message);
+    
+    const mainMenu = data?.headerMenu?.edges
+    const footerMenu = data?.footerMenu?.edges
+    
     return (
         <>
-            <Header mainMenu={mainMenu?.headerMenu?.edges} />
-            {/* <Navbar links={data.links} /> */}
+            <Header mainMenu={mainMenu} />
             <main>{children}</main>
-            {/* <Footer /> */}
+            <Footer footerMenu={footerMenu} />
         </>
     )
 }
-gi

@@ -12,11 +12,11 @@ import { client } from '../lib/apolloClient'
 import { GET_MENUS } from '../lib/api/menus'
 import { AuthProvider } from '../hooks/useAuth'
 
-function App({ Component, pageProps, mainMenu }) {
+function App({ Component, pageProps }) {
     return (
         <ApolloProvider client={client}>
             <AuthProvider>
-                <Layout mainMenu={mainMenu}>
+                <Layout>
                     <Component {...pageProps} />
                 </Layout>
             </AuthProvider>
