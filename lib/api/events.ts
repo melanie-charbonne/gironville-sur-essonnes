@@ -1,19 +1,21 @@
 import { gql } from '@apollo/client'
-import {EVENT_FRAGMENT} from './fragments/eventFragment'
-import {IMAGE_FRAGMENT} from './fragments/imageFragment'
-import {AUTHOR_FRAGMENT} from './fragments/authorFragment'
+import { EVENT_FRAGMENT } from './fragments/eventFragment'
+import { IMAGE_FRAGMENT } from './fragments/imageFragment'
+import { AUTHOR_FRAGMENT } from './fragments/authorFragment'
 
 export const GET_EVENTS_FOR_HOME = gql`
     ${EVENT_FRAGMENT}
     ${IMAGE_FRAGMENT}
     query GET_EVENTS_FOR_HOME {
         events(last: 5, where: { orderby: { field: DATE, order: DESC } }) {
-            nodes {
-                ...EventFragment
+            edges {
+                node {
+                    ...EventFragment
+                }
             }
         }
     }
-    `
+`
 export const GET_ALL_EVENTS = gql`
     ${EVENT_FRAGMENT}
     ${IMAGE_FRAGMENT}

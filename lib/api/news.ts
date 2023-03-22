@@ -7,9 +7,11 @@ export const GET_NEWS_FOR_HOME = gql`
     ${POST_FRAGMENT}
     ${IMAGE_FRAGMENT}
     query GET_NEWS_FOR_HOME {
-        posts(last: 5, where: { orderby: { field: DATE, order: DESC } }) {
-            nodes {
-                ...PostFragment
+        posts(last: 6, where: { orderby: { field: DATE, order: DESC } }) {
+            edges {
+                node {
+                    ...PostFragment
+                }
             }
         }
     }

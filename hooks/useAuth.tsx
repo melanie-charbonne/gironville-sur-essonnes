@@ -1,5 +1,5 @@
 import { useQuery, gql, ApolloError } from '@apollo/client'
-import React, { createContext, useContext, ReactNode, useMemo } from 'react'
+import React, { createContext, useContext, ReactNode } from 'react'
 
 type User = {
     id: string
@@ -7,6 +7,7 @@ type User = {
     firstName: string
     lastName: string
     email: string
+    username: string
     capabilities: string[]
 }
 
@@ -39,11 +40,12 @@ export const GET_USER = gql`
     }
 `
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode}) {
+    //const { data, loading, error } = useQuery(GET_USER)
     const { data, loading, error } = useQuery(GET_USER)
     const user = data?.viewer
     const loggedIn = Boolean(user)
-    
+
     const value = {
         loggedIn,
         user,

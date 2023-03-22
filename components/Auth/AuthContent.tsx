@@ -11,7 +11,6 @@ export default function AuthContent({ children }: { children: ReactNode }) {
     useEffect(() => {
         if (!loading && !loggedIn) {
             const routerPath = router.asPath
-            console.log(routerPath)
             router.push(`/login?path=${routerPath}`)
         } 
     }, [loggedIn, loading, router])

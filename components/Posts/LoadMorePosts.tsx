@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash'
 import PostsList from './PostsList'
 import ButtonMain from '../ButtonMain/ButtonMain'
 
-import { PER_PAGE_REST } from '../../lib/constants'
+import { PER_PAGE_REST } from '../../utils/constants'
 import { LOAD_MORE_NEWS } from '../../lib/api/news'
 
 type LoadMorePostsProps = {

@@ -1,29 +1,18 @@
-import Link from 'next/link'
-import { useMutation, gql } from '@apollo/client'
+import { useState } from 'react'
+import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { GET_USER } from '../../hooks/useAuth'
-
-const LOG_IN = gql`
-    mutation logIn($login: String!, $password: String!) {
-        loginWithCookies(input: { login: $login, password: $password }) {
-            status
-        }
-    }
-`
+import LOG_IN from '../../lib/api/mutations/login'
+import { getPreviewRedirectUrl } from '../../utils/preview-redirect'
+import axios from 'axios'
 
 export default function LogInForm() {
-    const [logIn, { loading, error }] = useMutation(LOG_IN, {
-        refetchQueries: [{ query: GET_USER }],
-    })
-
     const router = useRouter()
-    const previewURL = router.query.path
+    const [logIn, { loading, error }] = useMutation(LOG_IN)
 
     const errorMessage = error?.message || ''
-    const isEmailValid =
-        !errorMessage.includes('empty_email') &&
+    const isUsernameValid =
         !errorMessage.includes('empty_username') &&
-        !errorMessage.includes('invalid_email') &&
         !errorMessage.includes('invalid_username')
     const isPasswordValid =
         !errorMessage.includes('empty_password') &&
@@ -32,15 +21,38 @@ export default function LogInForm() {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
-        const { email, password } = Object.fromEntries(data)
-        logIn({
+        const { username, password } = Object.fromEntries(data)
+        const { postType, previewPostId } = router?.query ?? {}
+
+        return logIn({
             variables: {
-                login: email,
-                password,
+                input: {
+                    username,
+                    password,
+                },
             },
-        }).catch((error) => {
-                console.error(error)
         })
+            .then(async (context) => {
+                const postData = context
+                return await axios('/api/login', {
+                    method: 'POST',
+                    data: postData,
+                })
+            })
+            .then((data) => {
+                const { success } = data.data ?? {}
+                if (success && postType && previewPostId) {
+                    const previewUrl = getPreviewRedirectUrl(
+                        String(postType),
+                        String(previewPostId)
+                    )                    
+                    router.push(previewUrl)
+                }
+            })
+            .catch((error) => {
+                // setLoading(false)
+                console.error(error)
+            })
     }
 
     return (
@@ -51,17 +63,21 @@ export default function LogInForm() {
                 className="mb-4"
                 data-bitwarden-watching="1"
             >
-                <fieldset disabled={loading} aria-busy={loading} className="flex flex-col gap-2">
+                <fieldset
+                    disabled={loading}
+                    aria-busy={loading}
+                    className="flex flex-col gap-2"
+                >
                     <label
-                        htmlFor="log-in-email"
+                        htmlFor="log-in-username"
                         className="leading-7 text-sm text-gray-600"
                     >
-                        Email
+                        Nom d'utilisateur
                     </label>
                     <input
-                        id="log-in-email"
-                        type="email"
-                        name="email"
+                        id="log-in-username"
+                        type="text"
+                        name="username"
                         autoComplete="username"
                         required
                         className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -81,14 +97,14 @@ export default function LogInForm() {
                         className="mb-8 w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                     {/* <Link href="/forgot-password">Forgot password?</Link> */}
-                    {!isEmailValid ? (
+                    {!isUsernameValid ? (
                         <p className="error-message text-sm text-red-600">
-                            Adresse email et/ou mot de passe incorrect(s).
+                            Nom d'utilisateur et/ou mot de passe incorrect(s).
                         </p>
                     ) : null}
                     {!isPasswordValid ? (
                         <p className="error-message text-sm text-red-600">
-                            Adresse email et/ou mot de passe incorrect(s).
+                            Nom d'utilisateur et/ou mot de passe incorrect(s).
                         </p>
                     ) : null}
                     <button

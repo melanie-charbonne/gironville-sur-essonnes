@@ -46,7 +46,9 @@ export default function CoverImage({
                         width={width}
                         height={height}
                         sizes={sizes}
+                        fill={fill}
                         className={classNames}
+
                     />
                 </div>
             )}

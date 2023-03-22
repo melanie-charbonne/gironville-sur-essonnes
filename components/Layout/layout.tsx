@@ -1,9 +1,12 @@
-import { request } from 'graphql-request'
+import { ReactNode } from 'react'
 import Header from '../Header/Header'
-const fetcher = (query) =>
-    request(`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/graphql`, query)
 
-export default function Layout({ children, mainMenu }) {
+type LayoutProps = {
+    children: ReactNode
+    mainMenu: any
+}
+export default function Layout({ children, mainMenu }: LayoutProps) {
+    console.log(mainMenu)
     return (
         <>
             <Header mainMenu={mainMenu?.headerMenu?.edges} />
@@ -13,3 +16,4 @@ export default function Layout({ children, mainMenu }) {
         </>
     )
 }
+gi

@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import TheHero from '../components/TheHero/TheHero'
-import PostCard from '../components/Posts/PostCard'
+import PostsList from '../components/Posts/PostsList'
 import SectionTitle from '../components/SectionTitle'
-import EventCard from '../components/Events/EventCard'
+import EventsList from '../components/Events/EventsList'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Image from 'next/image'
 import Footer from '../components/Footer'
@@ -21,6 +21,7 @@ export default function Home({
     edito,
     editoImage,
 }) {
+
     return (
         <>
             <Head>
@@ -36,29 +37,9 @@ export default function Home({
                         sectionTitles.sectionNews.sectionNewsWatermark
                     }
                 ></SectionTitle>
-                <div className="latest-posts-container grid gap-6 lg:gap-12 grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 grid-flow-row mb-9 lg:mb-15">
-                    {posts.map((post, index) => {
-                        if (index === 0) {
-                            return (
-                                <PostCard
-                                    key={post.uri}
-                                    post={post}
-                                    width={400}
-                                    height={560}
-                                ></PostCard>
-                            )
-                        } else {
-                            return (
-                                <PostCard
-                                    key={post.uri}
-                                    post={post}
-                                    width={400}
-                                    height={200}
-                                ></PostCard>
-                            )
-                        }
-                    })}
-                </div>
+                <section className="grid grid-cols-2 lg:grid-cols-3 gap-6 mb-9 lg:mb-15">
+                    <PostsList key={posts.uri} posts={posts} />
+                </section>
                 <ButtonMain
                     link={'actualites'}
                     text={"Toute l'actualité"}
@@ -74,18 +55,9 @@ export default function Home({
                     }
                     theme={'light'}
                 ></SectionTitle>
-                <div className="latest-events_container grid gap-6 grid-cols-2 lg:grid-cols-4 mb-9 lg:mb-15">
-                    {events.map((event) => {
-                        return (
-                            <EventCard
-                                key={event.uri}
-                                event={event}
-                                width={310}
-                                height={375}
-                            ></EventCard>
-                        )
-                    })}
-                </div>
+                <section className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-9 lg:mb-15">
+                    <EventsList key={events.uri} events={events} />
+                </section>
                 <ButtonMain
                     link={'agenda'}
                     text={'Tous les évènements'}
@@ -97,7 +69,7 @@ export default function Home({
                 <div className="hidden sm:inline-block">
                     <Image
                         src={editoImage.sourceUrl}
-                        alt='Editos du maire - Gironville-sur-Essonnes'
+                        alt="Editos du maire - Gironville-sur-Essonnes"
                         width={475}
                         height={620}
                     ></Image>
@@ -112,29 +84,27 @@ export default function Home({
                         }
                     ></SectionTitle>
 
-                    {edito.map((edito) => {
+                    <>
+                        <article key={edito.uri} className="mb-6">
+                            <h3 className="mb-3 font-hn">{edito.title}</h3>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: edito.excerpt,
+                                }}
+                            />
+                        </article>
+                        <ButtonMain
+                            link={edito.uri}
+                            text={"Lire l'edito"}
+                            justify={'justify-start'}
+                            arrow
+                            secondary
+                        />
+                    </>
+                    {/* {editos.map((edito) => {
                         return (
-                            <>
-                                <article key={edito.uri} className="mb-6">
-                                    <h3 className="mb-3 font-hn">
-                                        {edito.title}
-                                    </h3>
-                                    <div
-                                        dangerouslySetInnerHTML={{
-                                            __html: edito.excerpt,
-                                        }}
-                                    />
-                                </article>
-                                <ButtonMain
-                                    link={edito.uri}
-                                    text={"Lire l'edito"}
-                                    justify={'justify-start'}
-                                    arrow
-                                    secondary
-                                />
-                            </>
                         )
-                    })}
+                    })} */}
                 </div>
             </section>
         </>
@@ -185,12 +155,12 @@ export const getStaticProps = async () => {
 
     return {
         props: {
-            posts: postsData?.posts?.nodes,
+            posts: postsData?.posts?.edges,
             page: theHeroData?.page,
-            events: eventsData?.events.nodes,
+            events: eventsData?.events?.edges,
             sectionTitles: sectionTitle?.page?.homePage?.dictionary,
             editoImage: editoData?.page?.homePage?.dictionary?.editoImage,
-            edito: editoData?.editos?.nodes,
+            edito: editoData?.editos?.nodes?.[0],
         },
         revalidate: 10,
     }

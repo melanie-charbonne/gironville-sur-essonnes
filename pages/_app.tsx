@@ -28,7 +28,6 @@ App.getStaticProps = async function () {
     const { data: mainMenu = [] } = await client.query({
         query: GET_MENUS,
     })
-    console.log(mainMenu)
     return {
         mainMenu,
     }

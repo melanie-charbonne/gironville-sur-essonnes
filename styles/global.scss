@@ -61,8 +61,8 @@
         @apply lg:px-12;
     }
     main {
-        @apply pb-4;
-        @apply lg:pb-16;
+        @apply py-4;
+        @apply lg:py-16;
         @apply w-screen;
     }
 }
@@ -79,52 +79,6 @@
         background: url(../asset/images/wave.svg) 0 0 no-repeat;
         background-size: cover;
         z-index: -1;
-    }
-}
-
-// Index Page
-.latest-posts {
-    .latest-posts {
-        &-container {
-            grid-template-areas:
-                'last-post last-post'
-                ' . .';
-            @include media-breakpoint-up(lg) {
-                grid-template-areas:
-                    'last-post . .'
-                    'last-post . .';
-            }
-        }
-
-        &-item:first-child {
-            grid-area: last-post;
-            .image-container {
-                width: 100%;
-                height: 200px;
-                @include media-breakpoint-up(md) {
-                    height: 300px;
-                }
-                @include media-breakpoint-up(lg) {
-                    width: unset;
-                    height: unset;
-                }
-                > span {
-                    @include media-breakpoint-down(lg) {
-                        position: unset !important;
-                    }
-                }
-                img {
-                    width: 100% !important;
-                    height: unset !important;
-                    object-fit: cover;
-                    @include media-breakpoint-up(lg) {
-                        width: 0 !important;
-                        height: 0 !important;
-                        object-fit: unset;
-                    }
-                }
-            }
-        }
     }
 }
 

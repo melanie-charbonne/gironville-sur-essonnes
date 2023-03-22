@@ -16,9 +16,11 @@ export default function EventURI({ event }) {
                 <section>
                     <CoverImage
                         featuredImage={event?.featuredImage}
-                        title={event?.featuredImage?.node?.altText || event?.title}
+                        title={
+                            event?.featuredImage?.node?.altText || event?.title
+                        }
                         containerClassNames={'w-full h-60 md:h-[540px]'}
-                        layout={'fill'}
+                        fill
                         classNames={'object-cover'}
                     />
                     <div className="single-head mt-8">

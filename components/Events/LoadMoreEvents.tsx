@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash'
 import EventsList from './EventsList'
 import ButtonMain from '../ButtonMain/ButtonMain'
 
-import { PER_PAGE_REST } from '../../lib/constants'
+import { PER_PAGE_REST } from '../../utils/constants'
 import { LOAD_MORE_EVENTS } from '../../lib/api/events'
 
 type LoadMoreEventsProps = {

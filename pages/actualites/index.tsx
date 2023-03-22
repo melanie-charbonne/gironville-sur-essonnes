@@ -4,7 +4,7 @@ import SectionTitle from '../../components/SectionTitle'
 import { client } from '../../lib/apolloClient'
 import { gql } from '@apollo/client'
 import { GET_ALL_NEWS } from '../../lib/api/news'
-import { PER_PAGE_FIRST } from '../../lib/constants'
+import { PER_PAGE_FIRST } from '../../utils/constants'
 
 export default function News({ posts, pageTitle, page }) {
     return (

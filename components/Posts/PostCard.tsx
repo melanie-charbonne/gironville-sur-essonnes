@@ -46,10 +46,7 @@ export default function PostCard({
                         title={post.title}
                         featuredImage={post.featuredImage}
                         fill
-                        classNames={cx(
-                            'transition duration-250',
-                            objectFit
-                        )}
+                        classNames={cx('transition duration-250', objectFit)}
                         containerClassNames={containerClassNames}
                     />
                 )}
