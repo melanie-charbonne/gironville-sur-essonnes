@@ -1,10 +1,9 @@
-import AuthContent from '../../components/Auth/AuthContent'
-import Head from 'next/head'
 import { client } from '../../lib/apolloClient'
 import { GET_PAGE_BY_ID } from '../../lib/api/pages'
 import { getAuthToken } from '../../utils/get-auth-cookie'
-import CoverImage from '../../components/CoverImage'
 import { getLoginPreviewRedirectUrl, handleRedirectsAndReturnData } from '../../utils/preview-redirect'
+import Head from 'next/head'
+import CoverImage from '../../components/CoverImage'
 
 const PagePreview = (pageProps) => {
     const page = pageProps?.page?.page

@@ -82,3 +82,19 @@ export const GET_EVENT_BY_URI = gql`
         }
     }
 `
+export const GET_EVENT_BY_ID = gql`
+    ${AUTHOR_FRAGMENT}
+    ${EVENT_FRAGMENT}
+    ${IMAGE_FRAGMENT}
+    query GET_EVENT_BY_ID($id: ID!) {
+        event(idType: DATABASE_ID, id: $id) {
+            ...EventFragment
+            author {
+                node {
+                    ...AuthorFragment
+                }
+            }
+            content
+        }
+    }
+`

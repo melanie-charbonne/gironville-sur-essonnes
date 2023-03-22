@@ -54,8 +54,6 @@ export default function EventURI({ event }) {
                     ></article>
                 </section>
             </div>
-
-            <Footer></Footer>
         </div>
     )
 }

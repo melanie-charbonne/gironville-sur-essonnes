@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Footer from '../../components/Footer'
 import { client } from '../../lib/apolloClient'
-import { GET_POST_BY_URI } from '../../lib/api/news'
+import { GET_NEWS_BY_URI } from '../../lib/api/news'
 import CoverImage from '../../components/CoverImage'
 import PostDate from '../../components/Posts/PostDate'
 import PostAuthor from '../../components/Posts/PostAuthor'
@@ -46,7 +46,7 @@ export default function PostURI({ post }) {
 
 export const getStaticProps = async ({ params }) => {
     const { data: postData } = await client.query({
-        query: GET_POST_BY_URI,
+        query: GET_NEWS_BY_URI,
         variables: {
             id: params.uri,
         },

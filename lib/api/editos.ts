@@ -38,3 +38,20 @@ export const GET_EDITO_BY_URI = gql`
         }
     }
 `
+
+export const GET_EDITO_BY_ID = gql`
+    ${AUTHOR_FRAGMENT}
+    query GET_EDITO_BY_ID($id: ID!) {
+        edito(idType: DATABASE_ID, id: $id) {
+            date
+            title
+            content
+            uri
+            author {
+                node {
+                    ...AuthorFragment
+                }
+            }
+        }
+    }
+`

@@ -64,12 +64,28 @@ export const LOAD_MORE_NEWS = gql`
         }
     }
 `
-export const GET_POST_BY_URI = gql`
+export const GET_NEWS_BY_URI = gql`
     ${POST_FRAGMENT}
     ${IMAGE_FRAGMENT}
     ${AUTHOR_FRAGMENT}
-    query GET_POST_BY_URI($id: ID!) {
+    query GET_NEWS_BY_URI($id: ID!) {
         post(id: $id, idType: URI) {
+            ...PostFragment
+            content
+            author {
+                node {
+                    ...AuthorFragment
+                }
+            }
+        }
+    }
+`
+export const GET_NEWS_BY_ID = gql`
+    ${POST_FRAGMENT}
+    ${IMAGE_FRAGMENT}
+    ${AUTHOR_FRAGMENT}
+    query GET_NEWS_BY_ID($id: ID!) {
+        post(idType: DATABASE_ID, id: $id) {
             ...PostFragment
             content
             author {
