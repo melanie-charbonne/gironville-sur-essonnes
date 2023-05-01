@@ -20,6 +20,7 @@ module.exports = {
                     'sans-serif',
                 ],
                 hn: ['Nunito', 'Helvetica', 'Arial', 'sans-serif'],
+                fontAwesome: ['FontAwesome'],
             },
             colors: {
                 blue: {

@@ -10,7 +10,7 @@ import styles from './Navigation.module.scss'
 let cx = classNames.bind(styles)
 
 type NavigationProps = {
-    mainMenu: String[]
+    mainMenu: string
 }
 
 const Navigation = ({ mainMenu }) => {
@@ -62,7 +62,7 @@ const Navigation = ({ mainMenu }) => {
                             >
                                 <Link
                                     href={menuItem?.node?.path}
-                                    className="font-medium"
+                                    className="font-medium lg:hover:text-blue-dark"
                                 >
                                     {menuItem?.node?.label}
                                 </Link>

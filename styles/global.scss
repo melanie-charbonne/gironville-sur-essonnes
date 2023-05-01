@@ -157,6 +157,32 @@ article {
     }
 }
 
+/* Footer */
+
+footer {
+    .social {
+        li {
+            a {
+                width: 40px;
+                height: 40px;
+                padding: 6px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid;
+                border-color: theme('colors.white');
+                border-radius: 50%;
+                color: theme('colors.white');
+                &:hover {
+                    background-color: theme('colors.white');;
+                    color: theme('colors.blue.dark');
+                }
+            }
+        }
+        
+    }
+}
+
 // Material icons
 .material-symbols-outlined {
     font-variation-settings:

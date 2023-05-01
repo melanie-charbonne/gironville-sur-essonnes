@@ -6,6 +6,10 @@ import '@wordpress/block-library/build-style/theme.css'
 
 import '../styles/global.scss'
 
+// import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+// import '@fortawesome/fontawesome-free/css/solid.min.css'
+// import '@fortawesome/fontawesome-free/css/brands.min.css'
+
 import Layout from '../components/Layout/layout'
 import { ApolloProvider } from '@apollo/client/react'
 import { client } from '../lib/apolloClient'
