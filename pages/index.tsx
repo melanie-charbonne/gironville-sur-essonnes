@@ -37,9 +37,9 @@ export default function Home({
                         sectionTitles.sectionNews.sectionNewsWatermark
                     }
                 ></SectionTitle>
-                <section className="grid grid-cols-2 lg:grid-cols-3 gap-6 mb-9 lg:mb-15">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mb-9 lg:mb-15">
                     <PostsList key={posts.uri} posts={posts} />
-                </section>
+                </div>
                 <ButtonMain
                     link={'actualites'}
                     text={"Toute l'actualité"}
@@ -55,9 +55,9 @@ export default function Home({
                     }
                     theme={'light'}
                 ></SectionTitle>
-                <section className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-9 lg:mb-15">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-9 lg:mb-15">
                     <EventsList key={events.uri} events={events} />
-                </section>
+                </div>
                 <ButtonMain
                     link={'agenda'}
                     text={'Tous les évènements'}

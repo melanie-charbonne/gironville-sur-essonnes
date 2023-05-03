@@ -14,6 +14,7 @@ export const GET_FOOTER = gql`
                 footerOpeningHours
                 footerPhoneNumber
                 footerYoutubeLink
+                footerCopyright
             }
         }
     }
