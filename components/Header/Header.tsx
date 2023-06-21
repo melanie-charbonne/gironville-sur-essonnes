@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Logo from '../../asset/images/logo-gironville-sur-essone.svg'
+import Logo from '../../asset/images/logo-gironville-sur-essonne.svg'
 import Link from 'next/link'
 import Navigation from './Navigation/Navigation'
 import {isEmpty} from 'lodash'

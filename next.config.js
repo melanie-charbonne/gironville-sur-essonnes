@@ -5,7 +5,7 @@ module.exports = {
         includePaths: [path.join(__dirname, 'styles')],
     },
     images: {
-        domains: ['localhost', 'gironville-sur-essonnes.local'],
+        domains: ['localhost', 'gironville-sur-essonne.local'],
     },
     webpack(config) {
         config.module.rules.push({
