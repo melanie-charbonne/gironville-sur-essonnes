@@ -65,6 +65,10 @@
         @apply lg:py-16;
         @apply w-screen;
     }
+
+    strong {
+        @apply font-medium;
+    }
 }
 
 .background_curve {

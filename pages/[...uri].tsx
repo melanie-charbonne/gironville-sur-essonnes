@@ -28,9 +28,12 @@ export default function PageURI({ page }) {
                     <div className="single-head mt-6 lg:mt-12">
                         <h1>{page?.title}</h1>
                     </div>
+                    {/* {postContent(page)} */}
                     <article
                         className="mt-8"
-                        dangerouslySetInnerHTML={{ __html: page?.content }}
+                        dangerouslySetInnerHTML={{
+                            __html: postContent(page),
+                        }}
                     ></article>
                 </section>
 
@@ -54,10 +57,18 @@ export default function PageURI({ page }) {
                     </section>
                 )}
             </div>
-
-            <Footer></Footer>
         </>
     )
+}
+
+const postContent = (page) => {
+    let postContentData
+    if (page?.elementorContent) {
+        postContentData = page?.elementorContent
+    } else if (page?.content) {
+        postContentData = page?.content
+    }
+    return postContentData
 }
 
 const haveChildren = (pageChildren) => {
@@ -75,6 +86,7 @@ export const getStaticProps = async ({ params }) => {
         props: {
             page: pageData?.page,
         },
+        revalidate: 10,
     }
 }
 
@@ -82,6 +94,6 @@ export async function getStaticPaths() {
     const paths = []
     return {
         paths,
-        fallback: 'blocking',
+        fallback: true,
     }
 }

@@ -80,6 +80,7 @@ export const getStaticProps = async ({ params }) => {
             post: postData?.edito,
             pageTitle: pageTitle?.page?.homePage?.dictionary,
         },
+        revalidate: 10,
     }
 }
 

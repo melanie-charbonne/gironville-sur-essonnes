@@ -7,6 +7,7 @@ export const GET_PAGE_BY_URI = gql`
         page(id: $id, idType: URI) {
             title
             content
+            elementorContent
             featuredImage {
                 node {
                     ...ImageFragment
