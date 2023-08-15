@@ -1,12 +1,43 @@
+import { useRef, useLayoutEffect } from 'react'
 import Head from 'next/head'
-import Footer from '../components/Footer'
 import { client } from '../lib/apolloClient'
 import { GET_PAGE_BY_URI } from '../lib/api/pages'
 import CoverImage from '../components/CoverImage'
 import PageCard from '../components/Pages/PageCard'
+import { Swiper } from 'swiper'
+import 'swiper/css/bundle'
+
 
 export default function PageURI({ page }) {
     const children = page?.children?.nodes
+    const PostContentContainerRef = useRef(null)
+
+    useLayoutEffect(() => {
+        if (!postContent(page) || !PostContentContainerRef.current) return
+
+        const container = PostContentContainerRef.current
+        const swiperInstances = container.getElementsByClassName('swiper')[0]
+
+        if (swiperInstances) {
+            const swiperInstance = new Swiper(swiperInstances, {
+                speed: 400,
+                spaceBetween: 20,
+                autoplay: {
+                    delay: 2000,
+                },
+                loop: true,
+                navigation: {
+                    prevEl: '.elementor-swiper-button-prev',
+                    nextEl: '.elementor-swiper-button-next',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'bullets',
+                },
+            })
+        }
+    }, [page, PostContentContainerRef])
+
     return (
         <>
             <Head>
@@ -28,9 +59,9 @@ export default function PageURI({ page }) {
                     <div className="single-head mt-6 lg:mt-12">
                         <h1>{page?.title}</h1>
                     </div>
-                    {/* {postContent(page)} */}
                     <article
                         className="mt-8"
+                        ref={PostContentContainerRef}
                         dangerouslySetInnerHTML={{
                             __html: postContent(page),
                         }}
