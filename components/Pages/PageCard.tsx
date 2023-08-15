@@ -31,21 +31,17 @@ const PageCard = ({
         <>
             <Link href={pageChildren?.uri}>
                 <article className="card hover:cursor-pointer">
-                    {pageChildren.featuredImage && (
-                        <CoverImage
-                            width={width}
-                            height={height}
-                            sizes={sizes}
-                            title={pageChildren.title}
-                            featuredImage={pageChildren.featuredImage}
-                            fill
-                            classNames={cx(
-                                'transition duration-250',
-                                objectFit
-                            )}
-                            containerClassNames={containerClassNames}
-                        />
-                    )}
+                    <CoverImage
+                        width={width}
+                        height={height}
+                        sizes={sizes}
+                        title={pageChildren.title}
+                        featuredImage={pageChildren.featuredImage}
+                        fill
+                        classNames={cx('transition duration-250', objectFit)}
+                        containerClassNames={containerClassNames}
+                    />
+
                     <h3>{pageChildren?.title}</h3>
                 </article>
             </Link>
