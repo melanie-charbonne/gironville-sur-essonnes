@@ -7,7 +7,6 @@ import PageCard from '../components/Pages/PageCard'
 import { Swiper } from 'swiper'
 import 'swiper/css/bundle'
 
-
 export default function PageURI({ page }) {
     const children = page?.children?.nodes
     const PostContentContainerRef = useRef(null)
@@ -46,16 +45,19 @@ export default function PageURI({ page }) {
 
             <div className="main single single-page">
                 <section>
-                    <CoverImage
-                        featuredImage={page?.featuredImage}
-                        title={
-                            page?.featuredImage?.node?.altText || page?.title
-                        }
-                        sizes={'80vw'}
-                        containerClassNames={'w-full h-64 md:h-[560px]'}
-                        fill
-                        classNames={'object-cover'}
-                    />
+                    {page?.featuredImage && (
+                        <CoverImage
+                            featuredImage={page?.featuredImage}
+                            title={
+                                page?.featuredImage?.node?.altText ||
+                                page?.title
+                            }
+                            sizes={'80vw'}
+                            containerClassNames={'w-full h-64 md:h-[560px]'}
+                            fill
+                            classNames={'object-cover'}
+                        />
+                    )}
                     <div className="single-head mt-6 lg:mt-12">
                         <h1>{page?.title}</h1>
                     </div>

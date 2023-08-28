@@ -14,15 +14,18 @@ export default function EventURI({ event }) {
 
             <div className="main single single-post">
                 <section>
-                    <CoverImage
-                        featuredImage={event?.featuredImage}
-                        title={
-                            event?.featuredImage?.node?.altText || event?.title
-                        }
-                        containerClassNames={'w-full h-60 md:h-[540px]'}
-                        fill
-                        classNames={'object-cover'}
-                    />
+                    {event?.featuredImage && (
+                        <CoverImage
+                            featuredImage={event?.featuredImage}
+                            title={
+                                event?.featuredImage?.node?.altText ||
+                                event?.title
+                            }
+                            containerClassNames={'w-full h-60 md:h-[540px]'}
+                            fill
+                            classNames={'object-cover'}
+                        />
+                    )}
                     <div className="single-head mt-8">
                         <h1>{event?.title}</h1>
                         <div className="md:inline-flex md:justifiy-between md:gap-20 mt-8 p-6 bg-blue-light rounded">

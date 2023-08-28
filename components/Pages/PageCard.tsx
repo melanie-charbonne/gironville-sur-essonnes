@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import CoverImage from '../CoverImage'
+import DefautCoverImage from '../../asset/images/default-cover-image.jpg'
 import cx from 'classnames'
 
 type PageCardProps = {
@@ -27,20 +29,39 @@ const PageCard = ({
     objectFit,
     containerClassNames,
 }: PageCardProps) => {
+    
+    
     return (
         <>
             <Link href={pageChildren?.uri}>
                 <article className="card hover:cursor-pointer">
-                    <CoverImage
-                        width={width}
-                        height={height}
-                        sizes={sizes}
-                        title={pageChildren.title}
-                        featuredImage={pageChildren.featuredImage}
-                        fill
-                        classNames={cx('transition duration-250', objectFit)}
-                        containerClassNames={containerClassNames}
-                    />
+                    {pageChildren.featuredImage ? (
+                        <CoverImage
+                            width={width}
+                            height={height}
+                            sizes={sizes}
+                            title={pageChildren.title}
+                            featuredImage={pageChildren.featuredImage}
+                            fill
+                            classNames={cx(
+                                'transition duration-250',
+                                objectFit
+                            )}
+                            containerClassNames={containerClassNames}
+                        />
+                    ) : (
+                        <div className="image-container relative w-full h-56 md:h-[300px] mb-2">
+                            <Image
+                                src={DefautCoverImage}
+                                alt={`Image de couverture pour ${pageChildren.title}`}
+                                width={width}
+                                height={height}
+                                sizes={sizes}
+                                fill
+                                loading="lazy"
+                            />
+                        </div>
+                    )}
 
                     <h3>{pageChildren?.title}</h3>
                 </article>

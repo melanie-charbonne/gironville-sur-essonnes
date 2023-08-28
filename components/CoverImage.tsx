@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import DefaultCoverImage from '../asset/images/default-cover-image.jpg'
+import DefautCoverImage from '../asset/images/default-cover-image.jpg'
 import cx from 'classnames'
 type CoverImageProps = {
     width?: number
@@ -12,8 +12,8 @@ type CoverImageProps = {
     featuredImage: {
         node: {
             altText: string
-            sourceUrl: string
-        }
+            sourceUrl: string 
+        } 
     }
 }
 
@@ -34,18 +34,15 @@ export default function CoverImage({
                 className={cx('image-container relative', containerClassNames)}
             >
                 <Image
-                    src={
-                        featuredImage?.node?.sourceUrl
-                            ? featuredImage?.node?.sourceUrl
-                            : DefaultCoverImage
-                    }
-                    alt={
-                        altText ? altText : `Image de couverture pour ${title}`
-                    }
+                    src={featuredImage?.node?.sourceUrl}
+                    alt={altText || `Image de couverture pour ${title}`}
                     width={width}
                     height={height}
                     sizes={sizes}
                     fill={fill}
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8VQ8AAnkBewKPWHQAAAAASUVORK5CYII="
                     className={classNames}
                 />
             </div>
