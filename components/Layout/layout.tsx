@@ -11,18 +11,22 @@ type LayoutProps = {
     children: ReactNode
 }
 export default function Layout({ children }: LayoutProps) {
-    const { data, error } = useQuery(GET_MENUS);
-    const dataFooter = useQuery(GET_FOOTER);
-    if (error) console.log(error.message);
+    const { data, error } = useQuery(GET_MENUS)
+    const dataFooter = useQuery(GET_FOOTER)
+    if (error) console.log(error.message)
 
     const mainMenu = data?.headerMenu?.edges
     const footerMenu = data?.footerMenu?.edges
     const footerInfos = dataFooter?.data?.page?.footer_infos
-    
-    let childrenPost = children.props.post; 
-    let childrenPage = children.props.page; 
-    let childrenEvent = children.props.event; 
-    let childrenEdito = children.props.edito; 
+
+    //@ts-ignore
+    let childrenPost = children.props.post
+    //@ts-ignore
+    let childrenPage = children.props.page
+    //@ts-ignore
+    let childrenEvent = children.props.event
+    //@ts-ignore
+    let childrenEdito = children.props.edito
 
     const isPost = () => {
         let post = childrenPost ? true : false
@@ -61,7 +65,6 @@ export default function Layout({ children }: LayoutProps) {
         ? childrenEdito?.uri ?? {}
         : {}
 
-    
     return (
         <>
             <Seo seo={seo} uri={uri} />
@@ -72,7 +75,7 @@ export default function Layout({ children }: LayoutProps) {
                         className="yoast-schema-graph"
                         key="yoastSchema"
                         dangerouslySetInnerHTML={{
-                            __html: (seo.schema?.raw),
+                            __html: seo.schema?.raw,
                         }}
                     />
                 ) : null}
