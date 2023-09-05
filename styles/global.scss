@@ -47,6 +47,11 @@
         @apply md:text-3xl;
         @apply lg:text-5xl;
     }
+    h2 {
+        @apply text-xl;
+        @apply md:text-2xl;
+        @apply lg:text-3xl;
+    }
     h3 {
         @apply text-lg;
         .list & {
@@ -54,7 +59,8 @@
         }
     }
 
-    section, header {
+    section,
+    header {
         width: 100%;
         @apply px-4;
         @apply md:px-7;
@@ -68,6 +74,27 @@
 
     strong {
         @apply font-medium;
+    }
+
+    ul {
+        li {
+            padding-left: 16px;
+            margin: 8px 0;
+            &:before {
+                content: '•';
+                margin-right: 4px;
+                color: theme('colors.blue.medium');
+            }
+            header &,
+            footer &,
+            .elementor-widget-icon-list & {
+                padding: 0;
+                margin: 0;
+                &:before {
+                    display: none;
+                }
+            }
+        }
     }
 }
 
@@ -126,7 +153,7 @@
         @apply font-hn;
         @apply text-white;
         @apply transition-all;
-        
+
         &:hover {
             background-color: theme('colors.blue.darker');
             border-color: theme('colors.blue.darker');
@@ -139,7 +166,7 @@
             &:hover {
                 background-color: transparent;
                 border-color: theme('colors.blue.dark');
-            }   
+            }
         }
     }
 }
@@ -149,16 +176,42 @@ article {
     p {
         @apply mb-2;
         @apply md:mb-3;
+
+        a {
+            display: inline;
+            width: calc(100%);
+            @apply font-medium;
+            color: theme('colors.blue.medium');
+            background-image: linear-gradient(
+                transparent calc(100% - 1px),
+                theme('colors.blue.medium') 1px
+                );
+                background-repeat: no-repeat;
+                background-size: 0% 100%;
+            transition: background-size 0.5s;
+            &:after {
+                content: '\f08e';
+                font-family: 'FontAwesome';
+                margin-left: 8px;
+            }
+            &:hover {
+                background-size: 100% 100%;
+            }
+        }
     }
     .wp-block-image {
         display: block !important;
         img {
             display: inline;
         }
-    } 
+    }
     .wp-block-gallery {
         gap: 30px;
     }
+}
+.single {
+    max-width: 1140px;
+    margin: 0 auto;
 }
 
 /* Footer */
@@ -177,31 +230,26 @@ footer {
             border-radius: 50%;
             color: theme('colors.white');
             &:hover {
-                background-color: theme('colors.white');;
+                background-color: theme('colors.white');
                 color: theme('colors.blue.dark');
             }
             svg {
                 width: 18px;
-                height: auto
+                height: auto;
             }
         }
-    
+
         &-facebook {
             a {
                 svg {
                     width: 13px;
                 }
-            }   
+            }
         }
-        
     }
 }
 
 // Material icons
 .material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
