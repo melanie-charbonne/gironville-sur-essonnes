@@ -5,6 +5,7 @@ import { GET_FOOTER } from '../../lib/api/footer'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import Seo from '../Seo/seo';
+import Head from 'next/head';
 
 type LayoutProps = {
     children: ReactNode
@@ -22,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
     let childrenPage = children.props.page; 
     let childrenEvent = children.props.event; 
     let childrenEdito = children.props.edito; 
-    
+
     const isPost = () => {
         let post = childrenPost ? true : false
         return post
@@ -63,7 +64,19 @@ export default function Layout({ children }: LayoutProps) {
     
     return (
         <>
-            <Seo seo={seo} uri={uri}/>
+            <Seo seo={seo} uri={uri} />
+            <Head>
+                {seo?.schema?.raw ? (
+                    <script
+                        type="application/ld+json"
+                        className="yoast-schema-graph"
+                        key="yoastSchema"
+                        dangerouslySetInnerHTML={{
+                            __html: (seo.schema?.raw),
+                        }}
+                    />
+                ) : null}
+            </Head>
             <Header mainMenu={mainMenu} />
             <main>{children}</main>
             <Footer footerMenu={footerMenu} footerInfos={footerInfos} />
