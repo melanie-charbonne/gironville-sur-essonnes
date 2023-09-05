@@ -36,6 +36,12 @@ export default function Document() {
                     src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"
                     strategy="lazyOnload"
                 />
+
+                <Script
+                    id="cookieyes"
+                    src="https://cdn-cookieyes.com/client_data/f9641b9f689bb6a040242c29/script.js"
+                    strategy="lazyOnload"
+                />
             </Head>
             <body>
                 <Main />
