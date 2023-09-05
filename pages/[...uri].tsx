@@ -6,9 +6,10 @@ import CoverImage from '../components/CoverImage'
 import PageCard from '../components/Pages/PageCard'
 import { Swiper } from 'swiper'
 import 'swiper/css/bundle'
+import { log } from 'console'
 
 export default function PageURI({ page }) {
-    const children = page?.children?.nodes
+    const children = page?.children?.nodes    
     const PostContentContainerRef = useRef(null)
 
     useEffect(() => {
@@ -105,7 +106,7 @@ const postContent = (page) => {
 }
 
 const haveChildren = (pageChildren) => {
-    return pageChildren?.length > 1
+    return pageChildren?.length > 0
 }
 
 export const getStaticProps = async ({ params }) => {

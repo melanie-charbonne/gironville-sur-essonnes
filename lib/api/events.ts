@@ -2,6 +2,7 @@ import { gql } from '@apollo/client'
 import { EVENT_FRAGMENT } from './fragments/eventFragment'
 import { IMAGE_FRAGMENT } from './fragments/imageFragment'
 import { AUTHOR_FRAGMENT } from './fragments/authorFragment'
+import { SEO_FRAGMENT } from './fragments/seoFragment'
 
 export const GET_EVENTS_FOR_HOME = gql`
     ${EVENT_FRAGMENT}
@@ -70,6 +71,7 @@ export const GET_EVENT_BY_URI = gql`
     ${AUTHOR_FRAGMENT}
     ${EVENT_FRAGMENT}
     ${IMAGE_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_EVENT_BY_URI($id: ID!) {
         event(id: $id, idType: URI) {
             ...EventFragment
@@ -79,6 +81,9 @@ export const GET_EVENT_BY_URI = gql`
                 }
             }
             content
+            seo {
+                ...SeoFragment
+            }
         }
     }
 `

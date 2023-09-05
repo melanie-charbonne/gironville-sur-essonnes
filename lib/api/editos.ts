@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 import { AUTHOR_FRAGMENT } from './fragments/authorFragment'
+import { SEO_FRAGMENT } from './fragments/seoFragment'
 
 export const GET_EDITO_FOR_HOME = gql`
     query GET_EDITO_FOR_HOME($id: ID = "/accueil") {
@@ -24,6 +25,7 @@ export const GET_EDITO_FOR_HOME = gql`
 `
 export const GET_EDITO_BY_URI = gql`
     ${AUTHOR_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_EDITO_BY_URI($id: ID!) {
         edito(id: $id, idType: URI) {
             date
@@ -34,6 +36,9 @@ export const GET_EDITO_BY_URI = gql`
                 node {
                     ...AuthorFragment
                 }
+            }
+            seo {
+                ...SeoFragment
             }
         }
     }

@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client'
 import { IMAGE_FRAGMENT } from './fragments/imageFragment'
+import { SEO_FRAGMENT } from './fragments/seoFragment'
 
 export const GET_PAGE_BY_URI = gql`
     ${IMAGE_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_PAGE_BY_URI($id: ID!) {
         page(id: $id, idType: URI) {
             title
@@ -12,6 +14,10 @@ export const GET_PAGE_BY_URI = gql`
                 node {
                     ...ImageFragment
                 }
+            }
+            uri
+            seo {
+                ...SeoFragment
             }
             children {
                 nodes {
@@ -46,6 +52,7 @@ export const GET_PAGE = gql`
 
 export const GET_PAGE_BY_ID = gql`
     ${IMAGE_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_PAGE_BY_ID($id: ID!) {
         page(idType: DATABASE_ID, id: $id) {
             id
@@ -59,6 +66,9 @@ export const GET_PAGE_BY_ID = gql`
             slug
             uri
             status
+            seo {
+                ...SeoFragment
+            }
         }
     }
 `

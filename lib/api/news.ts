@@ -2,6 +2,7 @@ import { gql } from '@apollo/client'
 import { IMAGE_FRAGMENT } from './fragments/imageFragment'
 import { POST_FRAGMENT } from './fragments/postFragment'
 import { AUTHOR_FRAGMENT } from './fragments/authorFragment'
+import { SEO_FRAGMENT } from './fragments/seoFragment'
 
 export const GET_NEWS_FOR_HOME = gql`
     ${POST_FRAGMENT}
@@ -68,6 +69,7 @@ export const GET_NEWS_BY_URI = gql`
     ${POST_FRAGMENT}
     ${IMAGE_FRAGMENT}
     ${AUTHOR_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_NEWS_BY_URI($id: ID!) {
         post(id: $id, idType: URI) {
             ...PostFragment
@@ -76,6 +78,9 @@ export const GET_NEWS_BY_URI = gql`
                 node {
                     ...AuthorFragment
                 }
+            }
+            seo {
+                ...SeoFragment
             }
         }
     }

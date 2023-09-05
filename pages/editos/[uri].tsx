@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Footer from '../../components/Footer'
 import { gql } from '@apollo/client'
 import { client } from '../../lib/apolloClient'
 import { GET_EDITO_BY_URI } from '../../lib/api/editos'
@@ -22,14 +21,18 @@ export default function EditoURI({ post, pageTitle }) {
                         pageTitle.sectionEdito.sectionEditoWatermark
                     }
                 ></SectionTitle>
+                {post?.featuredImage && (
+                    <CoverImage
+                        featuredImage={post?.featuredImage}
+                        title={
+                            post?.featuredImage?.node?.altText || post?.title
+                        }
+                        containerClassNames={'w-full h-60 md:h-[450px]'}
+                        fill
+                        classNames={'object-cover'}
+                    />
+                )}
 
-                <CoverImage
-                    featuredImage={post?.featuredImage}
-                    title={post?.featuredImage?.node?.altText || post?.title}
-                    containerClassNames={'w-full h-60 md:h-[450px]'}
-                    fill
-                    classNames={'object-cover'}
-                />
                 <section>
                     <div className="single-head mt-12 lg:mt-24">
                         <h1>{post?.title}</h1>
@@ -45,8 +48,6 @@ export default function EditoURI({ post, pageTitle }) {
                     ></article>
                 </section>
             </div>
-
-            <Footer></Footer>
         </>
     )
 }
