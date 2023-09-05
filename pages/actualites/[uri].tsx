@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Footer from '../../components/Footer'
 import { client } from '../../lib/apolloClient'
 import { GET_NEWS_BY_URI } from '../../lib/api/news'
 import CoverImage from '../../components/CoverImage'
@@ -41,8 +40,6 @@ export default function PostURI({ post }) {
                     ></article>
                 </section>
             </div>
-
-            <Footer></Footer>
         </>
     )
 }

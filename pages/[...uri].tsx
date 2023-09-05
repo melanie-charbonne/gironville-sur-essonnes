@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import Head from 'next/head'
 import { client } from '../lib/apolloClient'
 import { GET_PAGE_BY_URI } from '../lib/api/pages'
@@ -11,7 +11,7 @@ export default function PageURI({ page }) {
     const children = page?.children?.nodes
     const PostContentContainerRef = useRef(null)
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!postContent(page) || !PostContentContainerRef.current) return
 
         const container = PostContentContainerRef.current
