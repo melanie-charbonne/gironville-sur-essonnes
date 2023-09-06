@@ -76,8 +76,6 @@ export default function Layout({ children }: LayoutProps) {
         ? childrenEdito?.seo?.breadcrumbs ?? {}
         : {}
 
-        console.log(children)
-
     return (
         <>
             <Seo seo={seo} uri={uri} />
