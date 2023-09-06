@@ -4,7 +4,7 @@ import { GET_MENUS } from '../../lib/api/menus'
 import { GET_FOOTER } from '../../lib/api/footer'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import Seo from '../Seo/seo'
+import Seo from '../Seo/Seo'
 import Head from 'next/head'
 import Breadcrumbs from '../Seo/Breadcrumbs'
 
@@ -30,20 +30,20 @@ export default function Layout({ children }: LayoutProps) {
     let childrenEdito = children.props.edito
 
     const isPost = () => {
-        let post = childrenPost ? true : false
+        let post = !!childrenPost 
         return post
     }
     const isPage = () => {
-        let page = childrenPage ? true : false
+        let page = !!!!childrenPage 
         return page
     }
     const isEvent = () => {
-        let event = childrenEvent ? true : false
+        let event = !!childrenEvent 
         return event
     }
 
     const isEdito = () => {
-        let edito = childrenEdito ? true : false
+        let edito = !!childrenEdito 
         return edito
     }
     const seo = isPost()

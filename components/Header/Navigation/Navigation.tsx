@@ -50,24 +50,51 @@ const Navigation = ({ mainMenu }) => {
                     menuOpen: menuOpen,
                 })}
             >
-                <ul className={cx('nav__items-wrapper', 'lg:space-x-4')}>
+                <ul className={cx('nav__items-wrapper', 'lg:space-x-8')}>
                     {!isEmpty(mainMenu) &&
-                        mainMenu.map((menuItem) => (
-                            <li
-                                key={menuItem?.node?.id}
-                                className={cx('nav__item')}
-                                onClick={handleToggle}
-                                onBlur={handleHide}
-                                onFocus={handleShow}
-                            >
-                                <Link
-                                    href={menuItem?.node?.path}
-                                    className="font-medium lg:hover:text-blue-dark"
+                        mainMenu.map((menuItem) => {
+                            const children = menuItem?.node?.childItems?.edges
+                            return (
+                                <li
+                                    key={menuItem?.node?.id}
+                                    className={cx('nav__item')}
+                                    onClick={handleToggle}
+                                    onBlur={handleHide}
+                                    onFocus={handleShow}
                                 >
-                                    {menuItem?.node?.label}
-                                </Link>
-                            </li>
-                        ))}
+                                    <Link
+                                        href={menuItem?.node?.path}
+                                        className="font-medium lg:hover:text-blue-dark"
+                                    >
+                                        {menuItem?.node?.label}
+                                    </Link>
+                                    {children.length > 0 && (
+                                        <ul
+                                            className={cx(
+                                                'nav__sub-items',
+                                                'absolute z-50 w-full left-0 lg:grid lg:grid-cols-2 gap-4 opacity-100 translate-y-0 lg:rounded lg:bg-blue-dark text-white lg:p-4 shadow-lg '
+                                            )}
+                                        >
+                                            {children.map((child) => (
+                                                <li
+                                                    className={cx(
+                                                        'nav__sub-item',
+                                                        'lg:hover:opacity-90'
+                                                    )}
+                                                >
+                                                    <Link
+                                                        href={child?.node?.url}
+                                                        className="font-medium"
+                                                    >
+                                                        {child?.node?.label}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            )
+                        })}
                 </ul>
             </nav>
             <div
