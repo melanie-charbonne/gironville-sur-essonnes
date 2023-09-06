@@ -6,6 +6,7 @@ import '@wordpress/block-library/build-style/theme.css'
 
 import '../styles/elementor/_elementor.scss'
 import '../styles/global.scss'
+import 'swiper/css/bundle'
 
 import Layout from '../components/Layout/layout'
 import { ApolloProvider } from '@apollo/client/react'

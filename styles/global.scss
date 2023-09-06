@@ -68,8 +68,13 @@
     }
     main {
         @apply py-4;
-        @apply lg:py-16;
+        @apply lg:pb-16;
         @apply w-screen;
+        
+        .list {
+            @apply mt-4;
+            @apply lg:mt-8;
+        }
     }
 
     strong {
@@ -92,6 +97,26 @@
                 margin: 0;
                 &:before {
                     display: none;
+                }
+            }
+        }
+    }
+
+    .breadcrumbs {
+        ol {
+            display: flex;
+            gap: 8px;
+            li {
+                @apply text-xs;
+                @apply lg:text-sm;
+                a {
+                    transition: color 0.2s ease;
+                    &:hover {
+                        color: theme('colors.blue.medium');
+                    }
+                }
+                &:last-child {
+                    @apply font-medium;
                 }
             }
         }

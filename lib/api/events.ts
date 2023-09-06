@@ -20,10 +20,14 @@ export const GET_EVENTS_FOR_HOME = gql`
 export const GET_ALL_EVENTS = gql`
     ${EVENT_FRAGMENT}
     ${IMAGE_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_ALL_EVENTS($id: ID!, $first: Int, $after: String) {
         page: page(id: $id, idType: URI) {
             content
             uri
+            seo {
+                ...SeoFragment
+            }
         }
         events: events(
             first: $first
@@ -91,6 +95,7 @@ export const GET_EVENT_BY_ID = gql`
     ${AUTHOR_FRAGMENT}
     ${EVENT_FRAGMENT}
     ${IMAGE_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_EVENT_BY_ID($id: ID!) {
         event(idType: DATABASE_ID, id: $id) {
             ...EventFragment
@@ -100,6 +105,9 @@ export const GET_EVENT_BY_ID = gql`
                 }
             }
             content
+            seo {
+                ...SeoFragment
+            }
         }
     }
 `

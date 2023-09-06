@@ -1,11 +1,12 @@
 import { ReactNode } from 'react'
-import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client'
 import { GET_MENUS } from '../../lib/api/menus'
 import { GET_FOOTER } from '../../lib/api/footer'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import Seo from '../Seo/seo';
-import Head from 'next/head';
+import Seo from '../Seo/seo'
+import Head from 'next/head'
+import Breadcrumbs from '../Seo/Breadcrumbs'
 
 type LayoutProps = {
     children: ReactNode
@@ -65,6 +66,18 @@ export default function Layout({ children }: LayoutProps) {
         ? childrenEdito?.uri ?? {}
         : {}
 
+    const breadcrumbs = isPost()
+        ? childrenPost?.seo?.breadcrumbs ?? {}
+        : isPage() 
+        ? childrenPage?.seo?.breadcrumbs ?? {}
+        : isEvent()
+        ? childrenEvent?.seo?.breadcrumbs ?? {}
+        : isEdito()
+        ? childrenEdito?.seo?.breadcrumbs ?? {}
+        : {}
+
+        console.log(children)
+
     return (
         <>
             <Seo seo={seo} uri={uri} />
@@ -81,7 +94,10 @@ export default function Layout({ children }: LayoutProps) {
                 ) : null}
             </Head>
             <Header mainMenu={mainMenu} />
-            <main>{children}</main>
+            <main>
+                <Breadcrumbs breadcrumbs={breadcrumbs} />
+                {children}
+            </main>
             <Footer footerMenu={footerMenu} footerInfos={footerInfos} />
         </>
     )

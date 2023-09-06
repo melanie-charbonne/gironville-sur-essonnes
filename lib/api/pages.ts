@@ -40,12 +40,16 @@ export const GET_PAGE_BY_URI = gql`
 
 export const GET_PAGE = gql`
     query GET_PAGE($uri: String) {
+        ${SEO_FRAGMENT}
         page: pageBy(uri: $uri) {
             id
             title
             content
             slug
             uri
+            seo {
+                ...SeoFragment
+            }
         }
     }
 `

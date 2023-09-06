@@ -43,7 +43,6 @@ const Seo = ({ seo, uri }: SeoProps) => {
 
     const currentLocation =
         typeof window !== 'undefined' ? window.location.origin : null
-    console.log(currentLocation);
     
     const opengraphUrl =
         (process.env.NEXT_PUBLIC_WORDPRESS_URL

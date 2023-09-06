@@ -59,6 +59,7 @@ const PageCard = ({
                                 sizes={sizes}
                                 fill
                                 loading="lazy"
+                                style={{ objectFit: 'cover' }}
                             />
                         </div>
                     )}

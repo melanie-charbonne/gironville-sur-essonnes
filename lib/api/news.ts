@@ -20,10 +20,14 @@ export const GET_NEWS_FOR_HOME = gql`
 export const GET_ALL_NEWS = gql`
     ${POST_FRAGMENT}
     ${IMAGE_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_ALL_NEWS($id: ID!, $first: Int, $after: String) {
         page: page(id: $id, idType: URI) {
             content
             uri
+            seo {
+                ...SeoFragment
+            }
         }
         posts: posts(
             first: $first
@@ -89,6 +93,7 @@ export const GET_NEWS_BY_ID = gql`
     ${POST_FRAGMENT}
     ${IMAGE_FRAGMENT}
     ${AUTHOR_FRAGMENT}
+    ${SEO_FRAGMENT}
     query GET_NEWS_BY_ID($id: ID!) {
         post(idType: DATABASE_ID, id: $id) {
             ...PostFragment
@@ -97,6 +102,9 @@ export const GET_NEWS_BY_ID = gql`
                 node {
                     ...AuthorFragment
                 }
+            }
+            seo {
+                ...SeoFragment
             }
         }
     }

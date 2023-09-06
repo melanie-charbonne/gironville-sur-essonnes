@@ -5,8 +5,8 @@ import { GET_PAGE_BY_URI } from '../lib/api/pages'
 import CoverImage from '../components/CoverImage'
 import PageCard from '../components/Pages/PageCard'
 import { Swiper } from 'swiper'
-import 'swiper/css/bundle'
-import { log } from 'console'
+
+
 
 export default function PageURI({ page }) {
     const children = page?.children?.nodes    
