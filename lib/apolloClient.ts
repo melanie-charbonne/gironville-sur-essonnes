@@ -34,7 +34,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward  })
 })
 
 // Remove for production
-    process.env['NODE_TLS_REJECT_UNAUTHORIZED']  = '0'
+    //process.env['NODE_TLS_REJECT_UNAUTHORIZED']  = '0'
 // 
 const httpLink = new HttpLink({
     uri: `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}`,
