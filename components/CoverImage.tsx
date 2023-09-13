@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import DefautCoverImage from '../asset/images/default-cover-image.jpg'
 import cx from 'classnames'
 type CoverImageProps = {
     width?: number

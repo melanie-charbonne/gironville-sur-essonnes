@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import styles from './MenuIcon.module.scss'
 
-let cx = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
 type menuIconProps = {
     menuOpen: boolean

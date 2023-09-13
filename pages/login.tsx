@@ -1,4 +1,3 @@
-import UnAuthContent from '../components/Auth/UnAuthContent'
 import LogInForm from '../components/Auth/LoginForm'
 
 export default function LogIn() {

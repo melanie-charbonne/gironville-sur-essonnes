@@ -32,3 +32,4 @@ const LogoWebsite = React.forwardRef<HTMLAnchorElement>((props, ref) => {
         </a>
     )
 })
+LogoWebsite.displayName = 'LogoWebsite'

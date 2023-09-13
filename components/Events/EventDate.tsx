@@ -1,8 +1,8 @@
 import cx from "classnames"
 
 type EventDates = {
-    startDate?: String,
-    endDate?: String,
+    startDate?: string,
+    endDate?: string,
     dateClassNames?: string,
 }
 export default function EventDate({ startDate, endDate, dateClassNames }: EventDates) {

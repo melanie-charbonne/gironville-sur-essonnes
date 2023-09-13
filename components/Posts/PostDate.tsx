@@ -1,6 +1,6 @@
 export default function PostDate({ date: date }) {
-    let postDate = new Date(date)
-    let formatedDate = postDate.toLocaleDateString(('fr-FR'), {
+    const postDate = new Date(date)
+    const formatedDate = postDate.toLocaleDateString(('fr-FR'), {
         day: 'numeric',
         month: 'long',
         year: 'numeric',

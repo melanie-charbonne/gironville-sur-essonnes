@@ -19,7 +19,7 @@ export default function PageURI({ page }) {
         const swiperInstances = container.getElementsByClassName('swiper')[0]
 
         if (swiperInstances) {
-            const swiperInstance = new Swiper(swiperInstances, {
+            new Swiper(swiperInstances, {
                 speed: 400,
                 spaceBetween: 20,
                 autoplay: {

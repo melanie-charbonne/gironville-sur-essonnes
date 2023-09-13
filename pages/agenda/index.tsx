@@ -1,14 +1,12 @@
 import Head from 'next/head'
 import LoadMoreEvents from '../../components/Events/LoadMoreEvents'
 import SectionTitle from '../../components/SectionTitle'
-import EventsList from '../../components/Events/EventsList'
-import EventCard from '../../components/Events/EventCard'
 import { client } from '../../lib/apolloClient'
 import { gql } from '@apollo/client'
 import { GET_ALL_EVENTS } from '../../lib/api/events'
 import { PER_PAGE_FIRST } from '../../utils/constants'
 
-export default function Events({ events, pageTitle, page, error }) {
+export default function Events({ events, pageTitle, page }) {
     return (
         <div>
             <Head>

@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/client'
+
+import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
-import { GET_USER } from '../../hooks/useAuth'
 import LOG_IN from '../../lib/api/mutations/login'
 import { getPreviewRedirectUrl } from '../../utils/preview-redirect'
 import axios from 'axios'
@@ -72,7 +71,7 @@ export default function LogInForm() {
                         htmlFor="log-in-username"
                         className="leading-7 text-sm text-gray-600"
                     >
-                        Nom d'utilisateur
+                        Nom d&apos;utilisateur
                     </label>
                     <input
                         id="log-in-username"
@@ -99,12 +98,14 @@ export default function LogInForm() {
                     {/* <Link href="/forgot-password">Forgot password?</Link> */}
                     {!isUsernameValid ? (
                         <p className="error-message text-sm text-red-600">
-                            Nom d'utilisateur et/ou mot de passe incorrect(s).
+                            Nom d&apos;utilisateur et/ou mot de passe
+                            incorrect(s).
                         </p>
                     ) : null}
                     {!isPasswordValid ? (
                         <p className="error-message text-sm text-red-600">
-                            Nom d'utilisateur et/ou mot de passe incorrect(s).
+                            Nom d&apos;utilisateur et/ou mot de passe
+                            incorrect(s).
                         </p>
                     ) : null}
                     <button

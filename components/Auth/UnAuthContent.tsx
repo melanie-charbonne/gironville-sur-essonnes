@@ -14,10 +14,9 @@ export default function UnAuthContent({ children }: {children: ReactNode}) {
         if (!loading && loggedIn) {
             if (redirectURL) {
                 router.push(`${redirectURL}`)
-            }
-            else router.push('/')
+            } else router.push('/')
         }
-    }, [loggedIn, loading, router])
+    }, [loggedIn, loading, router, redirectURL])
 
     if (!loggedIn) {
         return <>{children}</>

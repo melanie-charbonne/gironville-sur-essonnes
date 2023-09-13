@@ -42,6 +42,7 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
                         } else {
                             return (
                                 <li
+                                    key={crumb.text+index}
                                     property="itemListElement"
                                     typeof="ListItem"
                                 >

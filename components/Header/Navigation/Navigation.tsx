@@ -7,11 +7,7 @@ import MenuIcon from '../MenuIcon/MenuIcon'
 import classNames from 'classnames/bind'
 import styles from './Navigation.module.scss'
 
-let cx = classNames.bind(styles)
-
-type NavigationProps = {
-    mainMenu: string
-}
+const cx = classNames.bind(styles)
 
 const Navigation = ({ mainMenu }) => {
     const [menuOpen, setMenuOpen] = useState(false)

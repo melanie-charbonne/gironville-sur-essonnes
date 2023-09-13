@@ -21,29 +21,29 @@ export default function Layout({ children }: LayoutProps) {
     const footerInfos = dataFooter?.data?.page?.footer_infos
 
     //@ts-ignore
-    let childrenPost = children.props.post
+    const childrenPost = children.props.post
     //@ts-ignore
-    let childrenPage = children.props.page
+    const childrenPage = children.props.page
     //@ts-ignore
-    let childrenEvent = children.props.event
+    const childrenEvent = children.props.event
     //@ts-ignore
-    let childrenEdito = children.props.edito
+    const childrenEdito = children.props.edito
 
     const isPost = () => {
-        let post = !!childrenPost 
+        const post = !!childrenPost 
         return post
     }
     const isPage = () => {
-        let page = !!!!childrenPage 
+        const page = !!!!childrenPage 
         return page
     }
     const isEvent = () => {
-        let event = !!childrenEvent 
+        const event = !!childrenEvent 
         return event
     }
 
     const isEdito = () => {
-        let edito = !!childrenEdito 
+        const edito = !!childrenEdito 
         return edito
     }
     const seo = isPost()

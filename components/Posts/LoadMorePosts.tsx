@@ -36,7 +36,7 @@ const LoadMorePosts = ({
     useEffect(() => {
         setPostsData(posts?.edges)
         setPageInfo(posts?.pageInfo)
-    }, [posts?.edges])
+    }, [posts?.edges, posts?.pageInfo])
 
     /**
      * Set posts.
@@ -84,7 +84,7 @@ const LoadMorePosts = ({
      * @param {String} endCursor Endcursor used to fetch the next set of posts.
      */
     const loadMoreItems = (endCursor = null) => {
-        let queryVariables = {
+        const queryVariables = {
             first: PER_PAGE_REST,
             after: endCursor,
             query: '',

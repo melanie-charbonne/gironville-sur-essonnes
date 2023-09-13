@@ -10,7 +10,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward  })
                 `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}, Extensions: ${extensions}`
             )
         )
-        for (let err of graphQLErrors) {
+        for (const err of graphQLErrors) {
             switch (err.message) {
                 // Apollo Server sets code to UNAUTHENTICATED
                 // when an AuthenticationError is thrown in a resolver
