@@ -1,11 +1,9 @@
-import Head from 'next/head'
 import TheHero from '../components/TheHero/TheHero'
 import PostsList from '../components/Posts/PostsList'
 import SectionTitle from '../components/SectionTitle'
 import EventsList from '../components/Events/EventsList'
 import ButtonMain from '../components/ButtonMain/ButtonMain'
 import Image from 'next/image'
-import Footer from '../components/Footer'
 import { GET_THE_HERO } from '../lib/api/index'
 import { GET_EDITO_FOR_HOME } from '../lib/api/editos'
 import { GET_NEWS_FOR_HOME } from '../lib/api/news'
@@ -24,11 +22,6 @@ export default function Home({
 
     return (
         <>
-            <Head>
-                <title>Mairie de Gironville-sur-Essonnes</title>
-                <link rel="icon" href="favicon.ico"></link>
-            </Head>
-
             <TheHero page={page} />
             <section className="latest-posts mt-9 lg:mt-15">
                 <SectionTitle
