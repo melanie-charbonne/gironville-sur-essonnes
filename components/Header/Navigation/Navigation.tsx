@@ -50,14 +50,17 @@ const Navigation = ({ mainMenu }) => {
                     menuOpen: menuOpen,
                 })}
             >
-                <ul className={cx('nav__items-wrapper', 'lg:space-x-8')}>
+                <ul className={cx('nav__items-wrapper', 'lg:space-x-1')}>
                     {!isEmpty(mainMenu) &&
                         mainMenu.map((menuItem) => {
                             const children = menuItem?.node?.childItems?.edges
                             return (
                                 <li
                                     key={menuItem?.node?.id}
-                                    className={cx('nav__item')}
+                                    className={cx(
+                                        'nav__item',
+                                        'group relative lg:hover:text-blue-dark'
+                                    )}
                                     onClick={handleToggle}
                                     onBlur={handleHide}
                                     onFocus={handleShow}
@@ -72,14 +75,14 @@ const Navigation = ({ mainMenu }) => {
                                         <ul
                                             className={cx(
                                                 'nav__sub-items',
-                                                'absolute z-50 w-full left-0 lg:grid lg:grid-cols-2 gap-4 opacity-100 translate-y-0 lg:rounded lg:bg-blue-dark text-white lg:p-4 shadow-lg '
+                                                'invisible lg:group-hover:visible absolute z-50 w-full flex flex-col left-1/2 -translate-x-1/2 lg:bg-blue-darker text-white shadow-2xl'
                                             )}
                                         >
                                             {children.map((child) => (
                                                 <li
+                                                    key={child?.node?.id}
                                                     className={cx(
-                                                        'nav__sub-item',
-                                                        'lg:hover:opacity-90'
+                                                        'nav__sub-item'
                                                     )}
                                                 >
                                                     <Link

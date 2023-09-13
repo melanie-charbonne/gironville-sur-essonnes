@@ -43,8 +43,21 @@
         border-bottom: 1px solid theme('colors.white/.1');
         font-size: 1.1rem;
         color: theme('colors.white');
+        &:hover {
+            &:after {
+                content: '';
+                display: block;
+                width: 80%;
+                height: 2px;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: theme('colors.blue.dark');
+            }
+        }
         a {
-            padding: 1.25rem 0;
+            padding: 1rem;
             display: block;
         }
 
@@ -58,11 +71,14 @@
     }
     &__sub {
         &-items {
-            
+            min-width: 200px;
         }
         &-item {
-            font-size: 0.85rem;
-           // padding: 0.5rem 0;
+            font-size: 0.9rem;
+            padding: 0.8rem 1.6rem;
+            &:hover {
+                background-color: theme('colors.blue.dark');
+            }
             a {
                 padding: 0;
             }
