@@ -52,7 +52,7 @@ export const getStaticProps = async () => {
     })
 
     const { data: eventsData } = await client.query({
-         query: GET_ALL_EVENTS,
+        query: GET_ALL_EVENTS,
         variables: {
             id: '/agenda',
             first: PER_PAGE_FIRST,
