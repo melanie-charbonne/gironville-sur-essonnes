@@ -11,10 +11,9 @@ const errorLink = onError(({ graphQLErrors, networkError, operation, forward  })
             )
         )
         for (const err of graphQLErrors) {
-            switch (err.message) {
+            if (err.message === 'Internal server error') {
                 // Apollo Server sets code to UNAUTHENTICATED
                 // when an AuthenticationError is thrown in a resolver
-                case 'Internal server error':
                     // Modify the operation context with a new token
                     const oldHeaders = operation.getContext().headers
                     const authToken = getAuthToken(oldHeaders)
