@@ -29,8 +29,8 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
                                         typeof="WebPage"
                                         href={crumbURL}
                                     >
-                                        <span property="name">
-                                            {crumb.text}
+                                        <span property="name"
+                                        dangerouslySetInnerHTML={{__html: crumb.text}}>
                                         </span>
                                     </Link>
                                     <span> / </span>
@@ -43,11 +43,16 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
                         } else {
                             return (
                                 <li
-                                    key={crumb.text+index}
+                                    key={crumb.text + index}
                                     property="itemListElement"
                                     typeof="ListItem"
                                 >
-                                    <span property="name">{crumb.text}</span>
+                                    <span
+                                        property="name"
+                                        dangerouslySetInnerHTML={{
+                                            __html: crumb.text,
+                                        }}
+                                    ></span>
                                     <meta
                                         property="position"
                                         content={index + 1}
