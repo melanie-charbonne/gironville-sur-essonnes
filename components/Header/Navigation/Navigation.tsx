@@ -50,6 +50,11 @@ const Navigation = ({ mainMenu }) => {
                     {!isEmpty(mainMenu) &&
                         mainMenu.map((menuItem) => {
                             const children = menuItem?.node?.childItems?.edges
+                            const nodeURL = menuItem?.node?.path.replace(
+                                'api.',
+                                ''
+                            )
+                        
                             return (
                                 <li
                                     key={menuItem?.node?.id}
@@ -62,7 +67,7 @@ const Navigation = ({ mainMenu }) => {
                                     onFocus={handleShow}
                                 >
                                     <Link
-                                        href={menuItem?.node?.path}
+                                        href={nodeURL}
                                         className="font-medium lg:hover:text-blue-dark"
                                     >
                                         {menuItem?.node?.label}
@@ -74,7 +79,8 @@ const Navigation = ({ mainMenu }) => {
                                                 'invisible lg:group-hover:visible absolute z-50 w-full flex flex-col left-1/2 -translate-x-1/2 lg:bg-blue-darker text-white shadow-2xl'
                                             )}
                                         >
-                                            {children.map((child) => (
+                                            {children.map((child) => {
+                                                const childrenNodeURL = child?.node?.url.replace('api.', '');
                                                 <li
                                                     key={child?.node?.id}
                                                     className={cx(
@@ -82,13 +88,13 @@ const Navigation = ({ mainMenu }) => {
                                                     )}
                                                 >
                                                     <Link
-                                                        href={child?.node?.url}
+                                                        href={childrenNodeURL}
                                                         className="font-medium"
                                                     >
                                                         {child?.node?.label}
                                                     </Link>
                                                 </li>
-                                            ))}
+                                            })}
                                         </ul>
                                     )}
                                 </li>

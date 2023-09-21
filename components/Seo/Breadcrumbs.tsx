@@ -16,6 +16,7 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
                 <ol vocab="https://schema.org/" typeof="BreadcrumbList">
                     {breadcrumbs.map((crumb, index) => {
                         const isLastItem = index === breadcrumbs.length - 1
+                        const crumbURL = crumb.url.replace('api.', '');
                         if (!isLastItem) {
                             return (
                                 <li
@@ -26,7 +27,7 @@ const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
                                     <Link
                                         property="item"
                                         typeof="WebPage"
-                                        href={crumb.url}
+                                        href={crumbURL}
                                     >
                                         <span property="name">
                                             {crumb.text}
