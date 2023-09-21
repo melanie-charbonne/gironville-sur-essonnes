@@ -81,19 +81,21 @@ const Navigation = ({ mainMenu }) => {
                                         >
                                             {children.map((child) => {
                                                 const childrenNodeURL = child?.node?.url.replace('api.', '');
-                                                <li
-                                                    key={child?.node?.id}
-                                                    className={cx(
-                                                        'nav__sub-item'
-                                                    )}
-                                                >
-                                                    <Link
-                                                        href={childrenNodeURL}
-                                                        className="font-medium"
+                                                return (
+                                                    <li
+                                                        key={child?.node?.id}
+                                                        className={cx(
+                                                            'nav__sub-item'
+                                                        )}
                                                     >
-                                                        {child?.node?.label}
-                                                    </Link>
-                                                </li>
+                                                        <Link
+                                                            href={childrenNodeURL}
+                                                            className="font-medium"
+                                                        >
+                                                            {child?.node?.label}
+                                                        </Link>
+                                                    </li>
+                                                )   
                                             })}
                                         </ul>
                                     )}
